@@ -1,0 +1,19 @@
+/*
+Theme Name: Your Theme
+Description: A search engine optimized website framework for WordPress.
+Author: Jonathan Bennett
+Author URI: http://ccistudios.com/
+Version: 1.0
+
+Your theme can be your copyrighted work.
+Like WordPress, this work is released under GNU General Public License, version 2 (GPL).
+
+http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+*/
+
+@import url(./css/reset.css);
+@import url(./css/styles.css);
+@import url(./css/elements.css);
+
+@import url(./css/layout.css);
+@import url(./css/modules.css);

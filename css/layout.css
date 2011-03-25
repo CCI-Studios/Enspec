@@ -1,0 +1,40 @@
+#wrapper {
+	margin: 66px auto 10px;
+	width: 960px;
+}
+
+	#top {
+		border-bottom: 1px solid black;
+		margin-bottom: 15px;
+		position: relative;
+	}
+		#logo {
+			float: left;
+		}
+		#main-menu {
+			position: absolute;
+			bottom: 10px;
+			right: 0;
+		}
+
+	#masthead {}
+
+	#content {}
+
+	#post-content {
+		border-bottom: 1px solid #DEDEDE;
+		margin: 20px 0 33px;
+		padding: 0 0 12px;
+	}
+
+	#bottom {
+		border-bottom: 1px solid #000;
+		border-top: 1px solid #000;
+		margin: 33px 0 10px;
+		padding: 5px 0;
+	}
+
+	#footer {
+		margin: 10px 0 20px;
+		position: relative;
+	}

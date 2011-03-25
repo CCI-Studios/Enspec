@@ -1,0 +1,16 @@
+.alignleft { float: left; }
+.alignright { float: right; }
+
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+.hidden { display: none; }
+
+
+.blue { color: #25aae1; }
+
+
+.screen-reader-text {
+	position: absolute;
+	left: -9000px;
+}
