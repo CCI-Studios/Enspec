@@ -1,0 +1,25 @@
+/* elements */
+body,
+select,
+input,
+textarea {
+  color: #444;
+  font-family: Helvetica, Arial, sans-serif;
+}
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+a, a:active, a:visited {
+  color: #607890;
+  text-decoration: none;
+}
+a:hover {
+  color: #036;
+  text-decoration: underline;
+}
