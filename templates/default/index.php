@@ -47,13 +47,31 @@ if ($_SERVER['SERVER_PORT'] === 8888 ||
 </head>
 
 <body>
-	<pre>
-	<?= htmlentities(print_r($_SERVER, 1)); ?>
-	</pre>
 
-	<input type="text" name="Adf"/>
-	<input type="text" name="Adfadsf" placeholder="asdf" /><Br/>
-	<input type="radio"><label>asdf</label>
+	<div id="wrapper">
+		<header>
+			<jdoc:include type="modules" name ="header" style="xhtml" />
+		</header>
+
+		<div id="main">
+			<aside>
+				<jdoc:include type="modules" name="left" style="xhtml" />
+			</aside>
+
+			<article>
+				<jdoc:include type="component" />
+			</article>
+		</div>
+
+		<footer>
+			<jdoc:include type="modules" name="footer" style="xhtml" />
+		</footer>
+	</div>
+
+	<div class="hidden">
+		<jdoc:include type="modules" name="hidden" style="raw" />
+	</div>
+
 
 	<!-- load scripts -->
 	<?php if ($testing): ?>
