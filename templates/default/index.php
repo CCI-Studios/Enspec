@@ -7,8 +7,10 @@
 <?php
 // get current menu name
 $menu = JSite::getMenu();
-//if ($menu && $menu->getActive())
-//    $menu = $menu->getActive()->alias;
+if ($menu && $menu->getActive())
+    $menu = $menu->getActive()->alias;
+else
+	$menu = "";
 
 if ($_SERVER['SERVER_PORT'] === 8888 ||
 		$_SERVER['SERVER_ADDR'] === '127.0.0.1' ||
@@ -21,11 +23,15 @@ if ($_SERVER['SERVER_PORT'] === 8888 ||
 } else {
 	$testing = false;
 }
+
+$testing=false;
 ?>
 
 <head>
 	<meta charset="utf-8" />
 	<?= ($testing)? '':  '<meta http-equiv="X-UA-Compatible" contents="IE=edge,chrome=1">' ?>
+
+ 	<jdoc:include type="head" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/templates/<?= $this->template ?>/resources/favicon.ico">
@@ -46,7 +52,7 @@ if ($_SERVER['SERVER_PORT'] === 8888 ||
 	<?php endif; ?>
 </head>
 
-<body>
+<body class="<?= $menu ?>">
 
 	<div id="wrapper">
 		<header>
