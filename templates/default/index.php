@@ -24,7 +24,7 @@ if ($_SERVER['SERVER_PORT'] === 8888 ||
 	$testing = false;
 }
 
-$testing=false;
+$analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 ?>
 
 <head>
@@ -78,31 +78,22 @@ $testing=false;
 		<jdoc:include type="modules" name="hidden" style="raw" />
 	</div>
 
-
 	<!-- load scripts -->
 	<?php if ($testing): ?>
 		<script src="/templates/<?= $this->template ?>/js/libs/mootools-1.1.1.js"></script>
-		<!-- FIXME Add all js files here -->
-		<script src="/templates/<?= $this->template ?>/js/log.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/columns.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/dropmenu.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/html5.js"></script>
 	<?php else: ?>
 		<script>
-			var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]]; // FIXME Update to clients ID
+			var _gaq=[["_setAccount","<?php echo $analytics?>"],["_trackPageview"]];
 			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 				g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
 				s.parentNode.insertBefore(g,s)}(document,"script"));
 	  </script>
 		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.1.1/mootools-yui-compressed.js"></script>
 		<script>window.MooTools || document.write('<script src="/templates/<?= $this->template; ?>/js/libs/mootools-1.1.1.min.js">\x3c/script>')</script>
-		<script src="/templates/<?= $this->template ?>/js/scripts.js"></script>
-
-		<!-- FIXME minimize scripts -->
-		<script src="/templates/<?= $this->template ?>/js/log.js"></script>
-		<script src="/templates/<?= $this->template ?>/js/columns.js"></script>
-		<script src="/templates/<?= $this->template ?>/js/dropmenu.js"></script>
-		<script src="/templates/<?= $this->template ?>/js/html5.js"></script>
+		<script src="/templates/<?= $this->template ?>/js/scripts.min.js"></script>
 	<?php endif; ?>
 </body>
 </html>
