@@ -46,8 +46,8 @@ namespace :deploy do
       db_user = Capistrano::CLI.ui.ask("Enter MySQL database user: ")
       db_pass = Capistrano::CLI.ui.ask("Enter MySQL database password: ")
       db_prefix = Capistrano::CLI.ui.ask("Enter Joomla DB prefix: ")
-      title   = Capistrano::CLI.ui.ask("Enter Site name: ")
-      admin_pass   = Capistrano::CLI.ui.ask("Enter Admin password: ")
+      title = Capistrano::CLI.ui.ask("Enter Site name: ")
+      admin_pass = Capistrano::CLI.ui.ask("Enter Admin password: ")
 
       # create config.php
       secret_hash = Digest::SHA1.hexdigest(Time.now.to_s)[0..15]
@@ -89,19 +89,32 @@ namespace :deploy do
         cd #{deploy_to}/shared &&
         svn checkout -q #{nooku_url} nooku &&
         ./symlinker ./nooku #{public}
-        cmd
-    end
-
-    task :nooku_update do
-      run <<-cmd
-        cd #{deploy_to}/shared/nooku &&
-        svn update -q
       cmd
     end
 
     task :cleanup do
       run "rm -rf #{public}/installation"
       run "mv #{public}/htaccess.txt #{public}/.htaccess"
+      run "rm #{deploy_to}/shared/joomla.sql"
+    end
+  end
+  
+  namespace :nooku do
+    
+    task :setup do
+      run <<-cmd
+        mkdir -p #{deploy_to}/shared &&
+        cd #{deploy_to}/shared &&
+        svn checkout -q #{nooku_url} nooku &&
+        ./symlinker ./nooku #{public}
+      cmd
+    end
+    
+    task :update do
+      run <<-cmd
+        cd #{deploy_to}/shared/nooku &&
+        svn update -q
+      cmd
     end
   end
 
