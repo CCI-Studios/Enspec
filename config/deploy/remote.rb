@@ -7,4 +7,4 @@ role :app, "SERVER"
 # directories
 set :deploy_to, "/home/USER/subdomains/DOMAIN"
 set :public, "#{deploy_to}/public_html"
-set :extensions, %w[template plg_ie6]
+set :extensions, %w[plg_ie6 public template]
