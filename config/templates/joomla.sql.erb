@@ -1,11 +1,9 @@
-# $Id: joomla.sql 18130 2010-07-14 11:21:35Z louis $
-
-# --------------------------------------------------------
-
 #
 # Table structure for table `<%= db_prefix %>banner`
 #
 
+
+DROP TABLE IF EXISTS `<%= db_prefix %>banner`;
 CREATE TABLE `<%= db_prefix %>banner` (
   `bid` int(11) NOT NULL auto_increment,
   `cid` int(11) NOT NULL default '0',
@@ -42,6 +40,7 @@ CREATE TABLE `<%= db_prefix %>banner` (
 # Table structure for table `<%= db_prefix %>bannerclient`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>bannerclient`;
 CREATE TABLE `<%= db_prefix %>bannerclient` (
   `cid` int(11) NOT NULL auto_increment,
   `name` varchar(255) NOT NULL default '',
@@ -59,7 +58,7 @@ CREATE TABLE `<%= db_prefix %>bannerclient` (
 #
 # Table structure for table `<%= db_prefix %>bannertrack`
 #
-
+DROP TABLE IF EXISTS `<%= db_prefix %>bannertrack`;
 CREATE TABLE  `<%= db_prefix %>bannertrack` (
   `track_date` date NOT NULL,
   `track_type` int(10) unsigned NOT NULL,
@@ -72,6 +71,7 @@ CREATE TABLE  `<%= db_prefix %>bannertrack` (
 # Table structure for table `<%= db_prefix %>categories`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>categories`;
 CREATE TABLE `<%= db_prefix %>categories` (
   `id` int(11) NOT NULL auto_increment,
   `parent_id` int(11) NOT NULL default 0,
@@ -102,6 +102,7 @@ CREATE TABLE `<%= db_prefix %>categories` (
 # Table structure for table `<%= db_prefix %>components`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>components`;
 CREATE TABLE `<%= db_prefix %>components` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) NOT NULL default '',
@@ -120,49 +121,13 @@ CREATE TABLE `<%= db_prefix %>components` (
   KEY `parent_option` (`parent`, `option`(32))
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-#
-# Dumping data for table `<%= db_prefix %>components`
-#
-
-INSERT INTO `<%= db_prefix %>components` VALUES (1, 'Banners', '', 0, 0, '', 'Banner Management', 'com_banners', 0, 'js/ThemeOffice/component.png', 0, 'track_impressions=0\ntrack_clicks=0\ntag_prefix=\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (2, 'Banners', '', 0, 1, 'option=com_banners', 'Active Banners', 'com_banners', 1, 'js/ThemeOffice/edit.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (3, 'Clients', '', 0, 1, 'option=com_banners&c=client', 'Manage Clients', 'com_banners', 2, 'js/ThemeOffice/categories.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (4, 'Web Links', 'option=com_weblinks', 0, 0, '', 'Manage Weblinks', 'com_weblinks', 0, 'js/ThemeOffice/component.png', 0, 'show_comp_description=1\ncomp_description=\nshow_link_hits=1\nshow_link_description=1\nshow_other_cats=1\nshow_headings=1\nshow_page_title=1\nlink_target=0\nlink_icons=\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (5, 'Links', '', 0, 4, 'option=com_weblinks', 'View existing weblinks', 'com_weblinks', 1, 'js/ThemeOffice/edit.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (6, 'Categories', '', 0, 4, 'option=com_categories&section=com_weblinks', 'Manage weblink categories', '', 2, 'js/ThemeOffice/categories.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (7, 'Contacts', 'option=com_contact', 0, 0, '', 'Edit contact details', 'com_contact', 0, 'js/ThemeOffice/component.png', 1, 'contact_icons=0\nicon_address=\nicon_email=\nicon_telephone=\nicon_fax=\nicon_misc=\nshow_headings=1\nshow_position=1\nshow_email=0\nshow_telephone=1\nshow_mobile=1\nshow_fax=1\nbannedEmail=\nbannedSubject=\nbannedText=\nsession=1\ncustomReply=0\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (8, 'Contacts', '', 0, 7, 'option=com_contact', 'Edit contact details', 'com_contact', 0, 'js/ThemeOffice/edit.png', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (9, 'Categories', '', 0, 7, 'option=com_categories&section=com_contact_details', 'Manage contact categories', '', 2, 'js/ThemeOffice/categories.png', 1, 'contact_icons=0\nicon_address=\nicon_email=\nicon_telephone=\nicon_fax=\nicon_misc=\nshow_headings=1\nshow_position=1\nshow_email=0\nshow_telephone=1\nshow_mobile=1\nshow_fax=1\nbannedEmail=\nbannedSubject=\nbannedText=\nsession=1\ncustomReply=0\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (10, 'Polls', 'option=com_poll', 0, 0, 'option=com_poll', 'Manage Polls', 'com_poll', 0, 'js/ThemeOffice/component.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (11, 'News Feeds', 'option=com_newsfeeds', 0, 0, '', 'News Feeds Management', 'com_newsfeeds', 0, 'js/ThemeOffice/component.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (12, 'Feeds', '', 0, 11, 'option=com_newsfeeds', 'Manage News Feeds', 'com_newsfeeds', 1, 'js/ThemeOffice/edit.png', 0, 'show_headings=1\nshow_name=1\nshow_articles=1\nshow_link=1\nshow_cat_description=1\nshow_cat_items=1\nshow_feed_image=1\nshow_feed_description=1\nshow_item_description=1\nfeed_word_count=0\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (13, 'Categories', '', 0, 11, 'option=com_categories&section=com_newsfeeds', 'Manage Categories', '', 2, 'js/ThemeOffice/categories.png', 0, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (14, 'User', 'option=com_user', 0, 0, '', '', 'com_user', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (15, 'Search', 'option=com_search', 0, 0, 'option=com_search', 'Search Statistics', 'com_search', 0, 'js/ThemeOffice/component.png', 1, 'enabled=0\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (16, 'Categories', '', 0, 1, 'option=com_categories&section=com_banner', 'Categories', '', 3, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (17, 'Wrapper', 'option=com_wrapper', 0, 0, '', 'Wrapper', 'com_wrapper', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (18, 'Mail To', '', 0, 0, '', '', 'com_mailto', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (19, 'Media Manager', '', 0, 0, 'option=com_media', 'Media Manager', 'com_media', 0, '', 1, 'upload_extensions=bmp,csv,doc,epg,gif,ico,jpg,odg,odp,ods,odt,pdf,png,ppt,swf,txt,xcf,xls,BMP,CSV,DOC,EPG,GIF,ICO,JPG,ODG,ODP,ODS,ODT,PDF,PNG,PPT,SWF,TXT,XCF,XLS\nupload_maxsize=10000000\nfile_path=images\nimage_path=images/stories\nrestrict_uploads=1\ncheck_mime=1\nimage_extensions=bmp,gif,jpg,png\nignore_extensions=\nupload_mime=image/jpeg,image/gif,image/png,image/bmp,application/x-shockwave-flash,application/msword,application/excel,application/pdf,application/powerpoint,text/plain,application/x-zip\nupload_mime_illegal=text/html', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (20, 'Articles', 'option=com_content', 0, 0, '', '', 'com_content', 0, '', 1, 'show_noauth=0\nshow_title=1\nlink_titles=0\nshow_intro=1\nshow_section=0\nlink_section=0\nshow_category=0\nlink_category=0\nshow_author=1\nshow_create_date=1\nshow_modify_date=1\nshow_item_navigation=0\nshow_readmore=1\nshow_vote=0\nshow_icons=1\nshow_pdf_icon=1\nshow_print_icon=1\nshow_email_icon=1\nshow_hits=1\nfeed_summary=0\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (21, 'Configuration Manager', '', 0, 0, '', 'Configuration', 'com_config', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (22, 'Installation Manager', '', 0, 0, '', 'Installer', 'com_installer', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (23, 'Language Manager', '', 0, 0, '', 'Languages', 'com_languages', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (24, 'Mass mail', '', 0, 0, '', 'Mass Mail', 'com_massmail', 0, '', 1, 'mailSubjectPrefix=\nmailBodySuffix=\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (25, 'Menu Editor', '', 0, 0, '', 'Menu Editor', 'com_menus', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (27, 'Messaging', '', 0, 0, '', 'Messages', 'com_messages', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (28, 'Modules Manager', '', 0, 0, '', 'Modules', 'com_modules', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (29, 'Plugin Manager', '', 0, 0, '', 'Plugins', 'com_plugins', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (30, 'Template Manager', '', 0, 0, '', 'Templates', 'com_templates', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (31, 'User Manager', '', 0, 0, '', 'Users', 'com_users', 0, '', 1, 'allowUserRegistration=1\nnew_usertype=Registered\nuseractivation=1\nfrontend_userparams=1\n\n', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (32, 'Cache Manager', '', 0, 0, '', 'Cache', 'com_cache', 0, '', 1, '', 1);
-INSERT INTO `<%= db_prefix %>components` VALUES (33, 'Control Panel', '', 0, 0, '', 'Control Panel', 'com_cpanel', 0, '', 1, '', 1);
-
 # --------------------------------------------------------
 
 #
 # Table structure for table `<%= db_prefix %>contact_details`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>contact_details`;
 CREATE TABLE `<%= db_prefix %>contact_details` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) NOT NULL default '',
@@ -200,6 +165,7 @@ CREATE TABLE `<%= db_prefix %>contact_details` (
 # Table structure for table `<%= db_prefix %>content`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>content`;
 CREATE TABLE `<%= db_prefix %>content` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `title` varchar(255) NOT NULL default '',
@@ -246,6 +212,7 @@ CREATE TABLE `<%= db_prefix %>content` (
 # Table structure for table `<%= db_prefix %>content_frontpage`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>content_frontpage`;
 CREATE TABLE `<%= db_prefix %>content_frontpage` (
   `content_id` int(11) NOT NULL default '0',
   `ordering` int(11) NOT NULL default '0',
@@ -258,6 +225,7 @@ CREATE TABLE `<%= db_prefix %>content_frontpage` (
 # Table structure for table `<%= db_prefix %>content_rating`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>content_rating`;
 CREATE TABLE `<%= db_prefix %>content_rating` (
   `content_id` int(11) NOT NULL default '0',
   `rating_sum` int(11) unsigned NOT NULL default '0',
@@ -270,6 +238,7 @@ CREATE TABLE `<%= db_prefix %>content_rating` (
 
 # Table structure for table `<%= db_prefix %>core_log_items`
 
+DROP TABLE IF EXISTS `<%= db_prefix %>core_log_items`;
 CREATE TABLE `<%= db_prefix %>core_log_items` (
   `time_stamp` date NOT NULL default '0000-00-00',
   `item_table` varchar(50) NOT NULL default '',
@@ -281,6 +250,7 @@ CREATE TABLE `<%= db_prefix %>core_log_items` (
 
 # Table structure for table `<%= db_prefix %>core_log_searches`
 
+DROP TABLE IF EXISTS `<%= db_prefix %>core_log_searches`;
 CREATE TABLE `<%= db_prefix %>core_log_searches` (
   `search_term` varchar(128) NOT NULL default '',
   `hits` int(11) unsigned NOT NULL default '0'
@@ -292,19 +262,12 @@ CREATE TABLE `<%= db_prefix %>core_log_searches` (
 
 # --------------------------------------------------------
 
+DROP TABLE IF EXISTS `<%= db_prefix %>groups`;
 CREATE TABLE `<%= db_prefix %>groups` (
   `id` tinyint(3) unsigned NOT NULL default '0',
   `name` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
-
-#
-# Dumping data for table `<%= db_prefix %>groups`
-#
-
-INSERT INTO `<%= db_prefix %>groups` VALUES (0, 'Public');
-INSERT INTO `<%= db_prefix %>groups` VALUES (1, 'Registered');
-INSERT INTO `<%= db_prefix %>groups` VALUES (2, 'Special');
 
 # --------------------------------------------------------
 
@@ -312,6 +275,7 @@ INSERT INTO `<%= db_prefix %>groups` VALUES (2, 'Special');
 # Table structure for table `<%= db_prefix %>plugins`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>plugins`;
 CREATE TABLE `<%= db_prefix %>plugins` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(100) NOT NULL default '',
@@ -329,47 +293,13 @@ CREATE TABLE `<%= db_prefix %>plugins` (
   KEY `idx_folder` (`published`,`client_id`,`access`,`folder`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-INSERT INTO `<%= db_prefix %>plugins` VALUES (1, 'Authentication - Joomla', 'joomla', 'authentication', 0, 1, 1, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (2, 'Authentication - LDAP', 'ldap', 'authentication', 0, 2, 0, 1, 0, 0, '0000-00-00 00:00:00', 'host=\nport=389\nuse_ldapV3=0\nnegotiate_tls=0\nno_referrals=0\nauth_method=bind\nbase_dn=\nsearch_string=\nusers_dn=\nusername=\npassword=\nldap_fullname=fullName\nldap_email=mail\nldap_uid=uid\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (3, 'Authentication - GMail', 'gmail', 'authentication', 0, 4, 0, 0, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (4, 'Authentication - OpenID', 'openid', 'authentication', 0, 3, 0, 0, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (5, 'User - Joomla!', 'joomla', 'user', 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', 'autoregister=1\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (6, 'Search - Content','content','search',0,1,1,1,0,0,'0000-00-00 00:00:00','search_limit=50\nsearch_content=1\nsearch_uncategorised=1\nsearch_archived=1\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (7, 'Search - Contacts','contacts','search',0,3,1,1,0,0,'0000-00-00 00:00:00','search_limit=50\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (8, 'Search - Categories', 'categories', 'search', 0, 4, 1, 0, 0, 0, '0000-00-00 00:00:00', 'search_limit=50\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (9, 'Search - Sections', 'sections', 'search', 0, 5, 1, 0, 0, 0, '0000-00-00 00:00:00', 'search_limit=50\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (10, 'Search - Newsfeeds', 'newsfeeds', 'search', 0, 6, 1, 0, 0, 0, '0000-00-00 00:00:00', 'search_limit=50\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (11, 'Search - Weblinks','weblinks','search',0,2,1,1,0,0,'0000-00-00 00:00:00','search_limit=50\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (12, 'Content - Pagebreak','pagebreak','content',0,10000,1,1,0,0,'0000-00-00 00:00:00','enabled=1\ntitle=1\nmultipage_toc=1\nshowall=1\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (13, 'Content - Rating','vote','content',0,4,1,1,0,0,'0000-00-00 00:00:00','');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (14, 'Content - Email Cloaking', 'emailcloak', 'content', 0, 5, 1, 0, 0, 0, '0000-00-00 00:00:00', 'mode=1\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (15, 'Content - Code Hightlighter (GeSHi)', 'geshi', 'content', 0, 5, 0, 0, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (16, 'Content - Load Module', 'loadmodule', 'content', 0, 6, 1, 0, 0, 0, '0000-00-00 00:00:00', 'enabled=1\nstyle=0\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (17, 'Content - Page Navigation','pagenavigation','content',0,2,1,1,0,0,'0000-00-00 00:00:00','position=1\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (18, 'Editor - No Editor','none','editors',0,0,1,1,0,0,'0000-00-00 00:00:00','');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (19, 'Editor - TinyMCE', 'tinymce', 'editors', 0, 0, 1, 1, 0, 0, '0000-00-00 00:00:00', 'mode=advanced\nskin=0\ncompressed=0\ncleanup_startup=0\ncleanup_save=2\nentity_encoding=raw\nlang_mode=0\nlang_code=en\ntext_direction=ltr\ncontent_css=1\ncontent_css_custom=\nrelative_urls=1\nnewlines=0\ninvalid_elements=applet\nextended_elements=\ntoolbar=top\ntoolbar_align=left\nhtml_height=550\nhtml_width=750\nelement_path=1\nfonts=1\npaste=1\nsearchreplace=1\ninsertdate=1\nformat_date=%Y-%m-%d\ninserttime=1\nformat_time=%H:%M:%S\ncolors=1\ntable=1\nsmilies=1\nmedia=1\nhr=1\ndirectionality=1\nfullscreen=1\nstyle=1\nlayer=1\nxhtmlxtras=1\nvisualchars=1\nnonbreaking=1\ntemplate=0\nadvimage=1\nadvlink=1\nautosave=1\ncontextmenu=1\ninlinepopups=1\nsafari=1\ncustom_plugin=\ncustom_button=\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (20, 'Editor - XStandard Lite 2.0', 'xstandard', 'editors', 0, 0, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (21, 'Editor Button - Image','image','editors-xtd',0,0,1,0,0,0,'0000-00-00 00:00:00','');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (22, 'Editor Button - Pagebreak','pagebreak','editors-xtd',0,0,1,0,0,0,'0000-00-00 00:00:00','');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (23, 'Editor Button - Readmore','readmore','editors-xtd',0,0,1,0,0,0,'0000-00-00 00:00:00','');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (24, 'XML-RPC - Joomla', 'joomla', 'xmlrpc', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (25, 'XML-RPC - Blogger API', 'blogger', 'xmlrpc', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', 'catid=1\nsectionid=0\n\n');
-#INSERT INTO `<%= db_prefix %>plugins` VALUES (26, 'XML-RPC - MetaWeblog API', 'metaweblog', 'xmlrpc', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (27, 'System - SEF','sef','system',0,1,1,0,0,0,'0000-00-00 00:00:00','');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (28, 'System - Debug', 'debug', 'system', 0, 2, 1, 0, 0, 0, '0000-00-00 00:00:00', 'queries=1\nmemory=1\nlangauge=1\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (29, 'System - Legacy', 'legacy', 'system', 0, 3, 0, 1, 0, 0, '0000-00-00 00:00:00', 'route=0\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (30, 'System - Cache', 'cache', 'system', 0, 4, 0, 1, 0, 0, '0000-00-00 00:00:00', 'browsercache=0\ncachetime=15\n\n');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (31, 'System - Log', 'log', 'system', 0, 5, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (32, 'System - Remember Me', 'remember', 'system', 0, 6, 1, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (33, 'System - Backlink', 'backlink', 'system', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
-INSERT INTO `<%= db_prefix %>plugins` VALUES (34, 'System - Mootools Upgrade', 'mtupgrade', 'system', 0, 8, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
-
 # --------------------------------------------------------
 
 #
 # Table structure for table `<%= db_prefix %>menu`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>menu`;
 CREATE TABLE `<%= db_prefix %>menu` (
   `id` int(11) NOT NULL auto_increment,
   `menutype` varchar(75) default NULL,
@@ -397,14 +327,13 @@ CREATE TABLE `<%= db_prefix %>menu` (
   KEY `menutype` (`menutype`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-INSERT INTO `<%= db_prefix %>menu` VALUES (1, 'mainmenu', 'Home', 'home', 'index.php?option=com_content&view=frontpage', 'component', 1, 0, 20, 0, 1, 0, '0000-00-00 00:00:00', 0, 0, 0, 3, 'num_leading_articles=1\nnum_intro_articles=4\nnum_columns=2\nnum_links=4\norderby_pri=\norderby_sec=front\nshow_pagination=2\nshow_pagination_results=1\nshow_feed_link=1\nshow_noauth=\nshow_title=\nlink_titles=\nshow_intro=\nshow_section=\nlink_section=\nshow_category=\nlink_category=\nshow_author=\nshow_create_date=\nshow_modify_date=\nshow_item_navigation=\nshow_readmore=\nshow_vote=\nshow_icons=\nshow_pdf_icon=\nshow_print_icon=\nshow_email_icon=\nshow_hits=\nfeed_summary=\npage_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 1);
-
 # --------------------------------------------------------
 
 #
 # Table structure for table `<%= db_prefix %>menu_types`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>menu_types`;
 CREATE TABLE `<%= db_prefix %>menu_types` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `menutype` VARCHAR(75) NOT NULL DEFAULT '',
@@ -414,7 +343,6 @@ CREATE TABLE `<%= db_prefix %>menu_types` (
   UNIQUE `menutype`(`menutype`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-INSERT INTO `<%= db_prefix %>menu_types` VALUES (1, 'mainmenu', 'Main Menu', 'The main menu for the site');
 
 # --------------------------------------------------------
 
@@ -422,6 +350,7 @@ INSERT INTO `<%= db_prefix %>menu_types` VALUES (1, 'mainmenu', 'Main Menu', 'Th
 # Table structure for table `<%= db_prefix %>messages`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>messages`;
 CREATE TABLE `<%= db_prefix %>messages` (
   `message_id` int(10) unsigned NOT NULL auto_increment,
   `user_id_from` int(10) unsigned NOT NULL default '0',
@@ -441,6 +370,7 @@ CREATE TABLE `<%= db_prefix %>messages` (
 # Table structure for table `<%= db_prefix %>messages_cfg`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>messages_cfg`;
 CREATE TABLE `<%= db_prefix %>messages_cfg` (
   `user_id` int(10) unsigned NOT NULL default '0',
   `cfg_name` varchar(100) NOT NULL default '',
@@ -453,6 +383,7 @@ CREATE TABLE `<%= db_prefix %>messages_cfg` (
 # Table structure for table `<%= db_prefix %>modules`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>modules`;
 CREATE TABLE `<%= db_prefix %>modules` (
   `id` int(11) NOT NULL auto_increment,
   `title` text NOT NULL,
@@ -475,39 +406,18 @@ CREATE TABLE `<%= db_prefix %>modules` (
   KEY `newsfeeds` (`module`,`published`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-INSERT INTO `<%= db_prefix %>modules` VALUES (1, 'Main Menu', '', 1, 'left', 0, '0000-00-00 00:00:00', 1, 'mod_mainmenu', 0, 0, 1, 'menutype=mainmenu\nmoduleclass_sfx=_menu\n', 1, 0, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (2, 'Login', '', 1, 'login', 0, '0000-00-00 00:00:00', 1, 'mod_login', 0, 0, 1, '', 1, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (3, 'Popular','',3,'cpanel',0,'0000-00-00 00:00:00',1,'mod_popular',0,2,1,'',0, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (4, 'Recent added Articles','',4,'cpanel',0,'0000-00-00 00:00:00',1,'mod_latest',0,2,1,'ordering=c_dsc\nuser_id=0\ncache=0\n\n',0, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (5, 'Menu Stats','',5,'cpanel',0,'0000-00-00 00:00:00',1,'mod_stats',0,2,1,'',0, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (6, 'Unread Messages','',1,'header',0,'0000-00-00 00:00:00',1,'mod_unread',0,2,1,'',1, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (7, 'Online Users','',2,'header',0,'0000-00-00 00:00:00',1,'mod_online',0,2,1,'',1, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (8, 'Toolbar','',1,'toolbar',0,'0000-00-00 00:00:00',1,'mod_toolbar',0,2,1,'',1, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (9, 'Quick Icons','',1,'icon',0,'0000-00-00 00:00:00',1,'mod_quickicon',0,2,1,'',1,1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (10, 'Logged in Users','',2,'cpanel',0,'0000-00-00 00:00:00',1,'mod_logged',0,2,1,'',0,1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (11, 'Footer', '', 0, 'footer', 0, '0000-00-00 00:00:00', 1, 'mod_footer', 0, 0, 1, '', 1, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (12, 'Admin Menu','', 1,'menu', 0,'0000-00-00 00:00:00', 1,'mod_menu', 0, 2, 1, '', 0, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (13, 'Admin SubMenu','', 1,'submenu', 0,'0000-00-00 00:00:00', 1,'mod_submenu', 0, 2, 1, '', 0, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (14, 'User Status','', 1,'status', 0,'0000-00-00 00:00:00', 1,'mod_status', 0, 2, 1, '', 0, 1, '');
-INSERT INTO `<%= db_prefix %>modules` VALUES (15, 'Title','', 1,'title', 0,'0000-00-00 00:00:00', 1,'mod_title', 0, 2, 1, '', 0, 1, '');
-
 # --------------------------------------------------------
 
 #
 # Table structure for table `<%= db_prefix %>modules_menu`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>modules_menu`;
 CREATE TABLE `<%= db_prefix %>modules_menu` (
   `moduleid` int(11) NOT NULL default '0',
   `menuid` int(11) NOT NULL default '0',
   PRIMARY KEY  (`moduleid`,`menuid`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
-
-#
-# Dumping data for table `<%= db_prefix %>modules_menu`
-#
-
-INSERT INTO `<%= db_prefix %>modules_menu` VALUES (1,0);
 
 # --------------------------------------------------------
 
@@ -515,6 +425,7 @@ INSERT INTO `<%= db_prefix %>modules_menu` VALUES (1,0);
 # Table structure for table `<%= db_prefix %>newsfeeds`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>newsfeeds`;
 CREATE TABLE `<%= db_prefix %>newsfeeds` (
   `catid` int(11) NOT NULL default '0',
   `id` int(11) NOT NULL auto_increment,
@@ -540,6 +451,7 @@ CREATE TABLE `<%= db_prefix %>newsfeeds` (
 # Table structure for table `<%= db_prefix %>poll_data`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>poll_data`;
 CREATE TABLE `<%= db_prefix %>poll_data` (
   `id` int(11) NOT NULL auto_increment,
   `pollid` int(11) NOT NULL default '0',
@@ -555,6 +467,7 @@ CREATE TABLE `<%= db_prefix %>poll_data` (
 # Table structure for table `<%= db_prefix %>poll_date`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>poll_date`;
 CREATE TABLE `<%= db_prefix %>poll_date` (
   `id` bigint(20) NOT NULL auto_increment,
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -570,6 +483,7 @@ CREATE TABLE `<%= db_prefix %>poll_date` (
 # Table structure for table `<%= db_prefix %>polls`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>polls`;
 CREATE TABLE `<%= db_prefix %>polls` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `title` varchar(255) NOT NULL default '',
@@ -590,6 +504,7 @@ CREATE TABLE `<%= db_prefix %>polls` (
 # !!!DEPRECATED!!!
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>poll_menu`;
 CREATE TABLE `<%= db_prefix %>poll_menu` (
   `pollid` int(11) NOT NULL default '0',
   `menuid` int(11) NOT NULL default '0',
@@ -602,6 +517,7 @@ CREATE TABLE `<%= db_prefix %>poll_menu` (
 # Table structure for table `<%= db_prefix %>sections`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>sections`;
 CREATE TABLE `<%= db_prefix %>sections` (
   `id` int(11) NOT NULL auto_increment,
   `title` varchar(255) NOT NULL default '',
@@ -628,6 +544,7 @@ CREATE TABLE `<%= db_prefix %>sections` (
 # Table structure for table `<%= db_prefix %>session`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>session`;
 CREATE TABLE `<%= db_prefix %>session` (
   `username` varchar(150) default '',
   `time` varchar(14) default '',
@@ -650,6 +567,7 @@ CREATE TABLE `<%= db_prefix %>session` (
 # Table structure for table `<%= db_prefix %>stats_agents`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>stats_agents`;
 CREATE TABLE `<%= db_prefix %>stats_agents` (
   `agent` varchar(255) NOT NULL default '',
   `type` tinyint(1) unsigned NOT NULL default '0',
@@ -662,6 +580,7 @@ CREATE TABLE `<%= db_prefix %>stats_agents` (
 # Table structure for table `<%= db_prefix %>templates_menu`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>templates_menu`;
 CREATE TABLE `<%= db_prefix %>templates_menu` (
   `template` varchar(255) NOT NULL default '',
   `menuid` int(11) NOT NULL default '0',
@@ -669,16 +588,13 @@ CREATE TABLE `<%= db_prefix %>templates_menu` (
   PRIMARY KEY (`menuid`, `client_id`, `template`(255))
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-# Dumping data for table `<%= db_prefix %>templates_menu`
-INSERT INTO `<%= db_prefix %>templates_menu` VALUES ('rhuk_milkyway', '0', '0');
-INSERT INTO `<%= db_prefix %>templates_menu` VALUES ('khepri', '0', '1');
-
 # --------------------------------------------------------
 
 #
 # Table structure for table `<%= db_prefix %>users`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>users`;
 CREATE TABLE `<%= db_prefix %>users` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) NOT NULL default '',
@@ -699,7 +615,7 @@ CREATE TABLE `<%= db_prefix %>users` (
   KEY `gid_block` (`gid`, `block`),
   KEY `username` (`username`),
   KEY `email` (`email`)
-) TYPE=MyISAM CHARACTER SET `utf8`;
+) TYPE=MyISAM CHARACTER SET `utf8` AUTO_INCREMENT = <%= rand(30) %>;
 
 # --------------------------------------------------------
 
@@ -707,6 +623,7 @@ CREATE TABLE `<%= db_prefix %>users` (
 # Table structure for table `<%= db_prefix %>weblinks`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>weblinks`;
 CREATE TABLE `<%= db_prefix %>weblinks` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `catid` int(11) NOT NULL default '0',
@@ -734,6 +651,7 @@ CREATE TABLE `<%= db_prefix %>weblinks` (
 # Table structure for table `<%= db_prefix %>core_acl_aro`
 #
 
+DROP TABLE IF EXISTS `<%= db_prefix %>core_acl_aro`;
 CREATE TABLE `<%= db_prefix %>core_acl_aro` (
   `id` int(11) NOT NULL auto_increment,
   `section_value` varchar(240) NOT NULL default '0',
@@ -751,7 +669,7 @@ CREATE TABLE `<%= db_prefix %>core_acl_aro` (
 #
 # Table structure for table `<%= db_prefix %>core_acl_aro_map`
 #
-
+DROP TABLE IF EXISTS `<%= db_prefix %>core_acl_aro_map`;
 CREATE TABLE  `<%= db_prefix %>core_acl_aro_map` (
   `acl_id` int(11) NOT NULL default '0',
   `section_value` varchar(230) NOT NULL default '0',
@@ -764,6 +682,7 @@ CREATE TABLE  `<%= db_prefix %>core_acl_aro_map` (
 #
 # Table structure for table `<%= db_prefix %>core_acl_aro_groups`
 #
+DROP TABLE IF EXISTS `<%= db_prefix %>core_acl_aro_groups`;
 CREATE TABLE `<%= db_prefix %>core_acl_aro_groups` (
   `id` int(11) NOT NULL auto_increment,
   `parent_id` int(11) NOT NULL default '0',
@@ -776,27 +695,14 @@ CREATE TABLE `<%= db_prefix %>core_acl_aro_groups` (
   KEY `<%= db_prefix %>gacl_lft_rgt_aro_groups` (`lft`,`rgt`)
 ) TYPE=MyISAM CHARACTER SET `utf8`;
 
-#
-# Dumping data for table `<%= db_prefix %>core_acl_aro_groups`
-#
 
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (17,0,'ROOT',1,22,'ROOT');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (28,17,'USERS',2,21,'USERS');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (29,28,'Public Frontend',3,12,'Public Frontend');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (18,29,'Registered',4,11,'Registered');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (19,18,'Author',5,10,'Author');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (20,19,'Editor',6,9,'Editor');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (21,20,'Publisher',7,8,'Publisher');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (30,28,'Public Backend',13,20,'Public Backend');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (23,30,'Manager',14,19,'Manager');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (24,23,'Administrator',15,18,'Administrator');
-INSERT INTO `<%= db_prefix %>core_acl_aro_groups` VALUES (25,24,'Super Administrator',16,17,'Super Administrator');
 
 # --------------------------------------------------------
 
 #
 # Table structure for table `<%= db_prefix %>core_acl_groups_aro_map`
 #
+DROP TABLE IF EXISTS `<%= db_prefix %>core_acl_groups_aro_map`;
 CREATE TABLE `<%= db_prefix %>core_acl_groups_aro_map` (
   `group_id` int(11) NOT NULL default '0',
   `section_value` varchar(240) NOT NULL default '',
@@ -809,6 +715,7 @@ CREATE TABLE `<%= db_prefix %>core_acl_groups_aro_map` (
 #
 # Table structure for table `<%= db_prefix %>core_acl_aro_sections`
 #
+DROP TABLE IF EXISTS `<%= db_prefix %>core_acl_aro_sections`;
 CREATE TABLE `<%= db_prefix %>core_acl_aro_sections` (
   `id` int(11) NOT NULL auto_increment,
   `value` varchar(230) NOT NULL default '',
@@ -827,7 +734,8 @@ INSERT INTO `<%= db_prefix %>core_acl_aro_sections` VALUES (10,'users',1,'Users'
 #
 # Table structure for table `<%= db_prefix %>migration_backlinks`
 #
-CREATE TABLE <%= db_prefix %>migration_backlinks (
+DROP TABLE IF EXISTS `<%= db_prefix %>migration_backlinks`;
+CREATE TABLE `<%= db_prefix %>migration_backlinks` (
 	`itemid` INT(11) NOT NULL,
 	`name` VARCHAR(100) NOT NULL,
 	`url` TEXT NOT NULL,

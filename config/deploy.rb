@@ -57,13 +57,16 @@ namespace :deploy do
 
       # install DB and create default admin
       template = ERB.new(File.read('config/templates/joomla.sql.erb'), nil, '<>')
-      result = template.result(binding)
+      structure = template.result(binding)
+      template = ERB.new(File.read('config/templates/data.sql.erb'), nil, '<>')
+      data = template.result(binding)
+
       t = <<-sql
         INSERT INTO #{db_prefix}users values (62, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'Super Administrator', 0, 1, 25, '0000-00-00', '0000-00-00', '', '');
         INSERT INTO #{db_prefix}core_acl_aro VALUES(10, 'users', '62', 0, 'Administrator', 0);
         INSERT INTO #{db_prefix}core_acl_groups_aro_map VALUES (25, '', 10);
       sql
-      put "#{result}#{t}", "#{deploy_to}/shared/joomla.sql"
+      put "#{structure}#{data}#{t}", "#{deploy_to}/shared/joomla.sql"
       run "mysql -u#{db_user} -p#{db_pass} -hlocalhost #{db_name} < #{deploy_to}/shared/joomla.sql"
     end
 
