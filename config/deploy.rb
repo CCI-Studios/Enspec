@@ -88,7 +88,7 @@ namespace :deploy do
         mkdir -p #{deploy_to}/shared &&
         cd #{deploy_to}/shared &&
         svn checkout -q #{nooku_url} nooku &&
-        ./symlinker ./nooku #{public}
+        ./symlinker #{deploy_to}/shared/nooku #{public}
       cmd
     end
 
@@ -106,7 +106,7 @@ namespace :deploy do
         mkdir -p #{deploy_to}/shared &&
         cd #{deploy_to}/shared &&
         svn checkout -q #{nooku_url} nooku &&
-        ./symlinker ./nooku #{public}
+        ./symlinker #{deploy_to}/shared/nooku #{public}
       cmd
     end
     
