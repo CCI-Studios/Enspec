@@ -94,6 +94,7 @@ namespace :deploy do
 
     task :cleanup do
       run "rm -rf #{public}/installation"
+      run "rm #{public}/joomla.zip"
       run "mv #{public}/htaccess.txt #{public}/.htaccess"
       run "rm #{deploy_to}/shared/joomla.sql"
     end
