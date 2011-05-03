@@ -3,14 +3,14 @@ set :stages, %w(staging production)
 set :default_stage, "staging"
 require "capistrano/ext/multistage"
 
-set :application, "TITLE"
+set :application, "Sarnia Gives"
 
 # repository info
-set :repository,  "git@github.com:ACCOUNT/REPO.git"
+set :repository,  "git@github.com:CCI-Studios/Sarnia-Gives.git"
 set :scm, :git
 
 # ssh settings
-set :user, "USERNAME"
+set :user, "sgives"
 set :use_sudo, false
 
 # Joomla
@@ -51,12 +51,12 @@ namespace :deploy do
 
       # create config.php
       secret_hash = Digest::SHA1.hexdigest(Time.now.to_s)[0..15]
-      template = ERB.new(File.read('capistrano/templates/config.php.erb'), nil, '<>')
+      template = ERB.new(File.read('config/templates/config.php.erb'), nil, '<>')
       result = template.result(binding)
       put result, "#{deploy_to}/shared/config.php"
 
       # install DB and create default admin
-      template = ERB.new(File.read('capistrano/templates/joomla.sql.erb'), nil, '<>')
+      template = ERB.new(File.read('config/templates/joomla.sql.erb'), nil, '<>')
       result = template.result(binding)
       t = <<-sql
         INSERT INTO #{db_prefix}users values (62, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'Super Administrator', 0, 1, 25, '0000-00-00', '0000-00-00', '', '');
