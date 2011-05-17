@@ -89,9 +89,7 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 				g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
 				s.parentNode.insertBefore(g,s)}(document,"script"));
-	  </script>
-		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.1.1/mootools-yui-compressed.js"></script>
-		<script>window.MooTools || document.write('<script src="/templates/<?= $this->template; ?>/js/libs/mootools-1.1.1.min.js">\x3c/script>')</script>
+	  	</script>
 		<script src="/templates/<?= $this->template ?>/js/scripts.min.js"></script>
 	<?php endif; ?>
 </body>
