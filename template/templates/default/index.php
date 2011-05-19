@@ -14,8 +14,8 @@ else
 
 if ($_SERVER['SERVER_PORT'] === 8888 ||
 		$_SERVER['SERVER_ADDR'] === '127.0.0.1' ||
-		stripos('ccistaging', $_SERVER['SERVER_NAME']) !== false ||
-		stripos('dev.', $_SERVER['SERVER_NAME']) === 0) {
+		stripos($_SERVER['SERVER_NAME'], 'ccistaging') !== false ||
+		stripos($_SERVER['SERVER_NAME'], 'dev') === 0) {
 
 	$testing = true;
 	error_reporting(E_ALL);
