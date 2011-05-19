@@ -80,7 +80,6 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 
 	<!-- load scripts -->
 	<?php if ($testing): ?>
-		<script src="/templates/<?= $this->template ?>/js/libs/mootools-1.1.1.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/columns.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/dropmenu.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/html5.js"></script>
