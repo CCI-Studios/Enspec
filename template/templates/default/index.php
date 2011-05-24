@@ -14,8 +14,8 @@ else
 
 if ($_SERVER['SERVER_PORT'] === 8888 ||
 		$_SERVER['SERVER_ADDR'] === '127.0.0.1' ||
-		stripos('ccistaging', $_SERVER['SERVER_NAME']) !== false ||
-		stripos('dev.', $_SERVER['SERVER_NAME']) === 0) {
+		stripos($_SERVER['SERVER_NAME'], 'ccistaging') !== false ||
+		stripos($_SERVER['SERVER_NAME'], 'dev') === 0) {
 
 	$testing = true;
 	error_reporting(E_ALL);
@@ -80,7 +80,6 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 
 	<!-- load scripts -->
 	<?php if ($testing): ?>
-		<script src="/templates/<?= $this->template ?>/js/libs/mootools-1.1.1.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/columns.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/dropmenu.js"></script>
 		<script src="/templates/<?= $this->template ?>/js/html5.js"></script>
@@ -90,9 +89,7 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 				g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
 				s.parentNode.insertBefore(g,s)}(document,"script"));
-	  </script>
-		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.1.1/mootools-yui-compressed.js"></script>
-		<script>window.MooTools || document.write('<script src="/templates/<?= $this->template; ?>/js/libs/mootools-1.1.1.min.js">\x3c/script>')</script>
+	  	</script>
 		<script src="/templates/<?= $this->template ?>/js/scripts.min.js"></script>
 	<?php endif; ?>
 </body>
