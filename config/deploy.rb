@@ -3,10 +3,10 @@ set :stages, %w(staging production)
 set :default_stage, "staging"
 require "capistrano/ext/multistage"
 
-set :application, "Sarnia Gives"
+set :application, "APPLICATION NAME"
 
 # repository info
-set :repository,  "git@github.com:CCI-Studios/Sarnia-Gives.git"
+set :repository,  "git@github.com:CCI-Studios/PROJECT.git"
 set :scm, :git
 
 # ssh settings
