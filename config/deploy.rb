@@ -3,10 +3,10 @@ set :stages, %w(staging production)
 set :default_stage, "staging"
 require "capistrano/ext/multistage"
 
-set :application, "Sarnia Gives"
+set :application, "APPLICATION NAME"
 
 # repository info
-set :repository,  "git@github.com:CCI-Studios/Sarnia-Gives.git"
+set :repository,  "git@github.com:CCI-Studios/PROJECT.git"
 set :scm, :git
 
 # ssh settings
@@ -149,6 +149,7 @@ namespace :deploy do
     extensions.each do |path|
       run "#{deploy_to}/shared/symlinker #{current_path}/#{path} #{public}"
     end
+    run "ln -nfs #{current_path}/public/.htaccess #{public}/.htaccess"
   end
 
   task :start do ; end
