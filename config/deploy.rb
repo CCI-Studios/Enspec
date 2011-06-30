@@ -114,7 +114,7 @@ namespace :deploy do
     task :update do
       run <<-cmd
         cd #{deploy_to}/shared/nooku &&
-        svn update -q
+        svn update -q --force --accept 'theirs-full'
       cmd
     end
   end
