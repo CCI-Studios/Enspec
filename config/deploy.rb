@@ -76,19 +76,10 @@ namespace :deploy do
     end
 
     task :install_default do
-      nooku_install
+      nooku::install
       # install sh404sef
       # install jce
       # install akeeba
-    end
-
-    task :nooku_install do
-      run <<-cmd
-        mkdir -p #{deploy_to}/shared &&
-        cd #{deploy_to}/shared &&
-        svn checkout -q #{nooku_url} nooku &&
-        ./symlinker #{deploy_to}/shared/nooku #{public}
-      cmd
     end
 
     task :cleanup do
