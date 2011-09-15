@@ -71,9 +71,8 @@ namespace :deploy do
     end
 
     task :symlink do
-      run <<-cmd
-        ln -nfs #{deploy_to}/shared/config.php #{public}/configuration.php
-      cmd
+      run "ln -nfs #{deploy_to}/shared/config.php #{public}/configuration.php"
+      run "ln -nfs #{current_path}/public/.htaccess #{public}/.htaccess"
     end
 
     task :install_default do
