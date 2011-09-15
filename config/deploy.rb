@@ -46,7 +46,7 @@ namespace :deploy do
       db_user = Capistrano::CLI.ui.ask("Enter MySQL database user: ")
       db_pass = Capistrano::CLI.ui.ask("Enter MySQL database password: ")
       db_prefix = ('a'..'z').to_a.shuffle[0..4].join
-      title = Capistrano::CLI.ui.ask("Enter Site name: ")
+      site_name = Capistrano::CLI.ui.ask("Enter Site name: ")
       admin_pass = Capistrano::CLI.ui.ask("Enter Admin password: ")
 
       # create config.php
