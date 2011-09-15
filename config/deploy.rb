@@ -3,14 +3,14 @@ set :stages, %w(staging production)
 set :default_stage, "staging"
 require "capistrano/ext/multistage"
 
-set :application, "APPLICATION NAME"
+set :application, "APPLICATION_NAME"
 
 # repository info
 set :repository,  "git@github.com:CCI-Studios/PROJECT.git"
 set :scm, :git
 
 # ssh settings
-set :user, "sgives"
+set :user, "USERNAME"
 set :use_sudo, false
 
 # Joomla
