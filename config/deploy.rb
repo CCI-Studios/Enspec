@@ -62,8 +62,8 @@ namespace :deploy do
       data = template.result(binding)
 
       t = <<-sql
-        INSERT INTO #{db_prefix}_users values (42, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'depreciated', 0, 1, '0000-00-00', '0000-00-00', '', '');
-        INSERT INTO #{db_prefix}_user_usergroup_map (42, 8);
+        INSERT INTO #{db_prefix}_users VALUES (42, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'depreciated', 0, 1, '0000-00-00', '0000-00-00', '', '');
+        INSERT INTO #{db_prefix}_user_usergroup_map VALUES(42, 8);
       sql
       put "#{structure}#{data}#{t}", "#{deploy_to}/shared/joomla.sql"
       run "mysql -u#{db_user} -p#{db_pass} -hlocalhost #{db_name} < #{deploy_to}/shared/joomla.sql"
