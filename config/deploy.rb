@@ -45,7 +45,7 @@ namespace :deploy do
       db_name = Capistrano::CLI.ui.ask("Enter MySQL database name: ")
       db_user = Capistrano::CLI.ui.ask("Enter MySQL database user: ")
       db_pass = Capistrano::CLI.ui.ask("Enter MySQL database password: ")
-      db_prefix = Capistrano::CLI.ui.ask("Enter Joomla DB prefix: ")
+      db_prefix = ('a'..'z').to_a.shuffle[0..4].join
       title = Capistrano::CLI.ui.ask("Enter Site name: ")
       admin_pass = Capistrano::CLI.ui.ask("Enter Admin password: ")
 
