@@ -75,7 +75,7 @@ namespace :deploy do
     end
 
     task :install_default do
-      nooku::install
+      nooku::setup
       # install sh404sef
       # install jce
       # install akeeba
