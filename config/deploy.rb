@@ -62,9 +62,8 @@ namespace :deploy do
       data = template.result(binding)
 
       t = <<-sql
-        INSERT INTO #{db_prefix}users values (62, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'Super Administrator', 0, 1, 25, '0000-00-00', '0000-00-00', '', '');
-        INSERT INTO #{db_prefix}core_acl_aro VALUES(10, 'users', '62', 0, 'Administrator', 0);
-        INSERT INTO #{db_prefix}core_acl_groups_aro_map VALUES (25, '', 10);
+        INSERT INTO #{db_prefix}_users values (42, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'depreciated', 0, 1, '0000-00-00', '0000-00-00', '', '');
+        INSERT INTO #{db_prefix}_user_usergroup_map (42, 8);
       sql
       put "#{structure}#{data}#{t}", "#{deploy_to}/shared/joomla.sql"
       run "mysql -u#{db_user} -p#{db_pass} -hlocalhost #{db_name} < #{deploy_to}/shared/joomla.sql"
@@ -85,19 +84,28 @@ namespace :deploy do
     task :cleanup do
       run "rm -rf #{public}/installation"
       run "rm #{public}/joomla.zip"
-      run "mv #{public}/htaccess.txt #{public}/.htaccess"
+      run "rm #{public}/htaccess.txt"
       run "rm #{deploy_to}/shared/joomla.sql"
     end
   end
   
   namespace :nooku do
-    
     task :setup do
       run <<-cmd
         mkdir -p #{deploy_to}/shared &&
         cd #{deploy_to}/shared &&
         svn checkout -q #{nooku_url} nooku &&
         ./symlinker #{deploy_to}/shared/nooku #{public}
+      cmd
+      
+      joomla17
+    end
+    
+    task :joomla17 do
+      run <<-cmd
+        mkdir -p #{public}/plugins/system/koowa &&
+        mv #{public}/plugins/system/koowa.php #{public}/plugins/system/koowa/koowa.php &&
+        mv #{public}/plugins/system/koowa.xml #{public}/plugins/system/koowa/koowa.xml
       cmd
     end
     
@@ -139,7 +147,6 @@ namespace :deploy do
     extensions.each do |path|
       run "#{deploy_to}/shared/symlinker #{current_path}/#{path} #{public}"
     end
-    run "ln -nfs #{current_path}/public/.htaccess #{public}/.htaccess"
   end
 
   task :start do ; end
