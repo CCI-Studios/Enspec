@@ -1,0 +1,58 @@
+/* @group modules */
+.moduletable {}
+
+/* @group hmenu */
+.moduletable_hmenu {}
+
+.moduletable_hmenu > ul {
+	margin: 0;
+	padding: 0;
+}
+
+.moduletable_hmenu > ul > li {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	position: relative;
+	
+	padding: 0 5px;
+}
+
+.moduletable_vmenu > ul > li > a,
+.moduletable_vmenu > ul > li > span {
+	display: block;
+}
+
+.moduletable_vmenu > ul > li > a span,
+.moduletable_vmenu > ul > li > span span {
+	
+}
+
+.moduletable_vmenu ul ul {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+}
+/* /hmenu */
+
+
+/* @group vmenu */
+.moduletable_vmenu {}
+
+.moduletable_vmenu > ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.moduletable_vmenu ul ul {
+	margin: 0.5em 0 1em 1em;
+	list-style: none;
+}
+
+.moduletable_vmenu li {
+	
+}
+/* /vmenu */
+

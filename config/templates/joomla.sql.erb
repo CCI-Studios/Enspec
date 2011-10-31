@@ -1,0 +1,769 @@
+# $Id: joomla.sql 21878 2011-07-17 22:23:26Z dextercowley $
+
+
+#
+# Table structure for table `<%= db_prefix %>_assets`
+#
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_assets` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set parent.',
+  `lft` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set lft.',
+  `rgt` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set rgt.',
+  `level` int(10) unsigned NOT NULL COMMENT 'The cached level in the nested tree.',
+  `name` varchar(50) NOT NULL COMMENT 'The unique name for the asset.\n',
+  `title` varchar(100) NOT NULL COMMENT 'The descriptive title for the asset.',
+  `rules` varchar(5120) NOT NULL COMMENT 'JSON encoded access control.',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_asset_name` (`name`),
+  KEY `idx_lft_rgt` (`lft`,`rgt`),
+  KEY `idx_parent_id` (`parent_id`)
+) DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_associations`
+#
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_associations` (
+  `id` VARCHAR(50) NOT NULL COMMENT 'A reference to the associated item.',
+  `context` VARCHAR(50) NOT NULL COMMENT 'The context of the associated item.',
+  `key` CHAR(32) NOT NULL COMMENT 'The key for the association computed from an md5 on associated ids.',
+  PRIMARY KEY `idx_context_id` (`context`, `id`),
+  INDEX `idx_key` (`key`)
+) DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_banners`
+#
+
+CREATE TABLE `<%= db_prefix %>_banners` (
+  `id` INTEGER NOT NULL auto_increment,
+  `cid` INTEGER NOT NULL DEFAULT '0',
+  `type` INTEGER NOT NULL DEFAULT '0',
+  `name` VARCHAR(255) NOT NULL DEFAULT '',
+  `alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `imptotal` INTEGER NOT NULL DEFAULT '0',
+  `impmade` INTEGER NOT NULL DEFAULT '0',
+  `clicks` INTEGER NOT NULL DEFAULT '0',
+  `clickurl` VARCHAR(200) NOT NULL DEFAULT '',
+  `state` TINYINT(3) NOT NULL DEFAULT '0',
+  `catid` INTEGER UNSIGNED NOT NULL DEFAULT 0,
+  `description` TEXT NOT NULL,
+  `custombannercode` VARCHAR(2048) NOT NULL,
+  `sticky` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+  `ordering` INTEGER NOT NULL DEFAULT 0,
+  `metakey` TEXT NOT NULL,
+  `params` TEXT NOT NULL,
+  `own_prefix` TINYINT(1) NOT NULL DEFAULT '0',
+  `metakey_prefix` VARCHAR(255) NOT NULL DEFAULT '',
+  `purchase_type` TINYINT NOT NULL DEFAULT '-1',
+  `track_clicks` TINYINT NOT NULL DEFAULT '-1',
+  `track_impressions` TINYINT NOT NULL DEFAULT '-1',
+  `checked_out` INTEGER UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publish_up` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publish_down` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `reset` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `language` char(7) NOT NULL DEFAULT '',
+  PRIMARY KEY  (`id`),
+  INDEX `idx_state` (`state`),
+  INDEX `idx_own_prefix` (`own_prefix`),
+  INDEX `idx_metakey_prefix` (`metakey_prefix`),
+  INDEX `idx_banner_catid`(`catid`),
+  INDEX `idx_language` (`language`)
+) DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_banner_clients`
+#
+
+CREATE TABLE `<%= db_prefix %>_banner_clients` (
+  `id` INTEGER NOT NULL auto_increment,
+  `name` VARCHAR(255) NOT NULL DEFAULT '',
+  `contact` VARCHAR(255) NOT NULL DEFAULT '',
+  `email` VARCHAR(255) NOT NULL DEFAULT '',
+  `extrainfo` TEXT NOT NULL,
+  `state` TINYINT(3) NOT NULL DEFAULT '0',
+  `checked_out` INTEGER UNSIGNED NOT NULL DEFAULT '0',
+  `checked_out_time` DATETIME NOT NULL default '0000-00-00 00:00:00',
+  `metakey` TEXT NOT NULL,
+  `own_prefix` TINYINT NOT NULL DEFAULT '0',
+  `metakey_prefix` VARCHAR(255) NOT NULL default '',
+  `purchase_type` TINYINT NOT NULL DEFAULT '-1',
+  `track_clicks` TINYINT NOT NULL DEFAULT '-1',
+  `track_impressions` TINYINT NOT NULL DEFAULT '-1',
+  PRIMARY KEY  (`id`),
+  INDEX `idx_own_prefix` (`own_prefix`),
+  INDEX `idx_metakey_prefix` (`metakey_prefix`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_banner_tracks`
+#
+
+CREATE TABLE  `<%= db_prefix %>_banner_tracks` (
+  `track_date` DATETIME NOT NULL,
+  `track_type` INTEGER UNSIGNED NOT NULL,
+  `banner_id` INTEGER UNSIGNED NOT NULL,
+  `count` INTEGER UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`track_date`, `track_type`, `banner_id`),
+  INDEX `idx_track_date` (`track_date`),
+  INDEX `idx_track_type` (`track_type`),
+  INDEX `idx_banner_id` (`banner_id`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_categories`
+#
+
+CREATE TABLE `<%= db_prefix %>_categories` (
+  `id` int(11) NOT NULL auto_increment,
+  `asset_id` INTEGER UNSIGNED NOT NULL DEFAULT 0 COMMENT 'FK to the <%= db_prefix %>_assets table.',
+  `parent_id` int(10) unsigned NOT NULL default '0',
+  `lft` int(11) NOT NULL default '0',
+  `rgt` int(11) NOT NULL default '0',
+  `level` int(10) unsigned NOT NULL default '0',
+  `path` varchar(255) NOT NULL default '',
+  `extension` varchar(50) NOT NULL default '',
+  `title` varchar(255) NOT NULL,
+  `alias` varchar(255) NOT NULL default '',
+  `note` varchar(255) NOT NULL default '',
+  `description` varchar(5120) NOT NULL default '',
+  `published` tinyint(1) NOT NULL default '0',
+  `checked_out` int(11) unsigned NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `access` tinyint(3) unsigned NOT NULL default '0',
+  `params` TEXT NOT NULL, 
+  `metadesc` varchar(1024) NOT NULL COMMENT 'The meta description for the page.',
+  `metakey` varchar(1024) NOT NULL COMMENT 'The meta keywords for the page.',
+  `metadata` varchar(2048) NOT NULL COMMENT 'JSON encoded metadata properties.',
+  `created_user_id` int(10) unsigned NOT NULL default '0',
+  `created_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_user_id` int(10) unsigned NOT NULL default '0',
+  `modified_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `hits` int(10) unsigned NOT NULL default '0',
+  `language` char(7) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `cat_idx` (`extension`,`published`,`access`),
+  KEY `idx_access` (`access`),
+  KEY `idx_checkout` (`checked_out`),
+  KEY `idx_path` (`path`),
+  KEY `idx_left_right` (`lft`,`rgt`),
+  KEY `idx_alias` (`alias`),
+  INDEX `idx_language` (`language`)
+)  DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_contact_details`
+#
+
+CREATE TABLE `<%= db_prefix %>_contact_details` (
+  `id` integer NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL default '',
+  `alias` varchar(255) NOT NULL default '',
+  `con_position` varchar(255) default NULL,
+  `address` text,
+  `suburb` varchar(100) default NULL,
+  `state` varchar(100) default NULL,
+  `country` varchar(100) default NULL,
+  `postcode` varchar(100) default NULL,
+  `telephone` varchar(255) default NULL,
+  `fax` varchar(255) default NULL,
+  `misc` mediumtext,
+  `image` varchar(255) default NULL,
+  `imagepos` varchar(20) default NULL,
+  `email_to` varchar(255) default NULL,
+  `default_con` tinyint(1) unsigned NOT NULL default '0',
+  `published` tinyint(1) NOT NULL default '0',
+  `checked_out` integer unsigned NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `ordering` integer NOT NULL default '0',
+  `params` text NOT NULL,
+  `user_id` integer NOT NULL default '0',
+  `catid` integer NOT NULL default '0',
+  `access` tinyint(3) unsigned NOT NULL default '0',
+  `mobile` varchar(255) NOT NULL default '',
+  `webpage` varchar(255) NOT NULL default '',
+  `sortname1` varchar(255) NOT NULL,
+  `sortname2` varchar(255) NOT NULL,
+  `sortname3` varchar(255) NOT NULL,
+  `language` char(7) NOT NULL,
+  `created` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created_by` int(10) unsigned NOT NULL default '0',
+  `created_by_alias` varchar(255) NOT NULL default '',
+  `modified` datetime NOT NULL default '0000-00-00 00:00:00',
+  `modified_by` int(10) unsigned NOT NULL default '0',
+  `metakey` text NOT NULL,
+  `metadesc` text NOT NULL,
+  `metadata` text NOT NULL,
+  `featured` tinyint(3) unsigned NOT NULL default '0' COMMENT 'Set if article is featured.',
+  `xreference` varchar(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `publish_up` datetime NOT NULL default '0000-00-00 00:00:00',
+  `publish_down` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`id`),
+  KEY `idx_access` (`access`),
+  KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`published`),
+  KEY `idx_catid` (`catid`),
+  KEY `idx_createdby` (`created_by`),
+  KEY `idx_featured_catid` (`featured`,`catid`),
+  KEY `idx_language` (`language`),
+  KEY `idx_xreference` (`xreference`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_content`
+#
+
+CREATE TABLE `<%= db_prefix %>_content` (
+  `id` integer unsigned NOT NULL auto_increment,
+  `asset_id` INTEGER UNSIGNED NOT NULL DEFAULT 0 COMMENT 'FK to the <%= db_prefix %>_assets table.',
+  `title` varchar(255) NOT NULL default '',
+  `alias` varchar(255) NOT NULL default '',
+  `title_alias` varchar(255) NOT NULL default '',
+  `introtext` mediumtext NOT NULL,
+  `fulltext` mediumtext NOT NULL,
+  `state` tinyint(3) NOT NULL default '0',
+  `sectionid` integer unsigned NOT NULL default '0',
+  `mask` integer unsigned NOT NULL default '0',
+  `catid` integer unsigned NOT NULL default '0',
+  `created` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created_by` integer unsigned NOT NULL default '0',
+  `created_by_alias` varchar(255) NOT NULL default '',
+  `modified` datetime NOT NULL default '0000-00-00 00:00:00',
+  `modified_by` integer unsigned NOT NULL default '0',
+  `checked_out` integer unsigned NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `publish_up` datetime NOT NULL default '0000-00-00 00:00:00',
+  `publish_down` datetime NOT NULL default '0000-00-00 00:00:00',
+  `images` text NOT NULL,
+  `urls` text NOT NULL,
+  `attribs` varchar(5120) NOT NULL,
+  `version` integer unsigned NOT NULL default '1',
+  `parentid` integer unsigned NOT NULL default '0',
+  `ordering` integer NOT NULL default '0',
+  `metakey` text NOT NULL,
+  `metadesc` text NOT NULL,
+  `access` integer unsigned NOT NULL default '0',
+  `hits` integer unsigned NOT NULL default '0',
+  `metadata` text NOT NULL,
+  `featured` tinyint(3) unsigned NOT NULL default '0' COMMENT 'Set if article is featured.',
+  `language` char(7) NOT NULL COMMENT 'The language code for the article.',
+  `xreference` varchar(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  PRIMARY KEY  (`id`),
+  KEY `idx_access` (`access`),
+  KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
+  KEY `idx_catid` (`catid`),
+  KEY `idx_createdby` (`created_by`),
+  KEY `idx_featured_catid` (`featured`,`catid`),
+  KEY `idx_language` (`language`),
+  KEY `idx_xreference` (`xreference`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_content_frontpage`
+#
+
+CREATE TABLE `<%= db_prefix %>_content_frontpage` (
+  `content_id` integer NOT NULL default '0',
+  `ordering` integer NOT NULL default '0',
+  PRIMARY KEY  (`content_id`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_content_rating`
+#
+
+CREATE TABLE `<%= db_prefix %>_content_rating` (
+  `content_id` integer NOT NULL default '0',
+  `rating_sum` integer unsigned NOT NULL default '0',
+  `rating_count` integer unsigned NOT NULL default '0',
+  `lastip` varchar(50) NOT NULL default '',
+  PRIMARY KEY  (`content_id`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_core_log_searches`
+#
+
+CREATE TABLE `<%= db_prefix %>_core_log_searches` (
+  `search_term` varchar(128) NOT NULL default '',
+  `hits` integer unsigned NOT NULL default '0'
+)  DEFAULT CHARSET=utf8;
+
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_extensions`
+#
+
+CREATE TABLE `<%= db_prefix %>_extensions` (
+  `extension_id` INT  NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100)  NOT NULL,
+  `type` VARCHAR(20)  NOT NULL,
+  `element` VARCHAR(100) NOT NULL,
+  `folder` VARCHAR(100) NOT NULL,
+  `client_id` TINYINT(3) NOT NULL,
+  `enabled` TINYINT(3) NOT NULL DEFAULT '1',
+  `access` TINYINT(3) UNSIGNED NOT NULL DEFAULT '1',
+  `protected` TINYINT(3) NOT NULL DEFAULT '0',
+  `manifest_cache` TEXT  NOT NULL,
+  `params` TEXT NOT NULL,
+  `custom_data` text NOT NULL,
+  `system_data` text NOT NULL,
+  `checked_out` int(10) unsigned NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `ordering` int(11) default '0',
+  `state` int(11) default '0',
+  PRIMARY KEY (`extension_id`),
+  INDEX `element_clientid`(`element`, `client_id`),
+  INDEX `element_folder_clientid`(`element`, `folder`, `client_id`),
+  INDEX `extension`(`type`,`element`,`folder`,`client_id`)
+) AUTO_INCREMENT=10000 CHARACTER SET utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_languages`
+#
+
+CREATE TABLE `<%= db_prefix %>_languages` (
+  `lang_id` int(11) unsigned NOT NULL auto_increment,
+  `lang_code` char(7) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `title_native` varchar(50) NOT NULL,
+  `sef` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `description` varchar(512) NOT NULL,
+  `metakey` text NOT NULL,
+  `metadesc` text NOT NULL,
+  `published` int(11) NOT NULL default '0',
+  `ordering` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`lang_id`),
+  UNIQUE `idx_sef` (`sef`),
+  INDEX `idx_ordering` (`ordering`)
+)  DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_menu`
+#
+
+CREATE TABLE `<%= db_prefix %>_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menutype` varchar(24) NOT NULL COMMENT 'The type of menu this item belongs to. FK to <%= db_prefix %>_menu_types.menutype',
+  `title` varchar(255) NOT NULL COMMENT 'The display title of the menu item.',
+  `alias` varchar(255) NOT NULL COMMENT 'The SEF alias of the menu item.',
+  `note` varchar(255) NOT NULL DEFAULT '',
+  `path` varchar(1024) NOT NULL COMMENT 'The computed path of the menu item based on the alias field.',
+  `link` varchar(1024) NOT NULL COMMENT 'The actually link the menu item refers to.',
+  `type` varchar(16) NOT NULL COMMENT 'The type of link: Component, URL, Alias, Separator',
+  `published` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'The published state of the menu link.',
+  `parent_id` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'The parent menu item in the menu tree.',
+  `level` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'The relative level in the tree.',
+  `component_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'FK to <%= db_prefix %>_extensions.id',
+  `ordering` int(11) NOT NULL DEFAULT '0' COMMENT 'The relative ordering of the menu item in the tree.',
+  `checked_out` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'FK to <%= db_prefix %>_users.id',
+  `checked_out_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'The time the menu item was checked out.',
+  `browserNav` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'The click behaviour of the link.',
+  `access` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'The access level required to view the menu item.',
+  `img` varchar(255) NOT NULL COMMENT 'The image of the menu item.',
+  `template_style_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `params` TEXT NOT NULL COMMENT 'JSON encoded data for the menu item.',
+  `lft` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set lft.',
+  `rgt` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set rgt.',
+  `home` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Indicates if this menu item is the home or default page.',
+  `language` char(7) NOT NULL DEFAULT '',
+  `client_id` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_client_id_parent_id_alias` (`client_id`,`parent_id`,`alias`),
+  KEY `idx_componentid` (`component_id`,`menutype`,`published`,`access`),
+  KEY `idx_menutype` (`menutype`),
+  KEY `idx_left_right` (`lft`,`rgt`),
+  KEY `idx_alias` (`alias`),
+  KEY `idx_path` (`path`(333)),
+  KEY `idx_language` (`language`)
+)   DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_menu_types`
+#
+
+CREATE TABLE `<%= db_prefix %>_menu_types` (
+  `id` integer unsigned NOT NULL auto_increment,
+  `menutype` varchar(24) NOT NULL,
+  `title` varchar(48) NOT NULL,
+  `description` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (`id`),
+  UNIQUE `idx_menutype` (`menutype`)
+)  DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_messages`
+#
+
+CREATE TABLE `<%= db_prefix %>_messages` (
+  `message_id` integer unsigned NOT NULL auto_increment,
+  `user_id_from` integer unsigned NOT NULL default '0',
+  `user_id_to` integer unsigned NOT NULL default '0',
+  `folder_id` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `date_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `state` tinyint(1) NOT NULL DEFAULT '0',
+  `priority` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `subject` varchar(255) NOT NULL DEFAULT '',
+  `message` text NOT NULL,
+  PRIMARY KEY  (`message_id`),
+  KEY `useridto_state` (`user_id_to`, `state`)
+)  DEFAULT CHARSET=utf8;
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_messages_cfg`
+#
+
+CREATE TABLE `<%= db_prefix %>_messages_cfg` (
+  `user_id` integer unsigned NOT NULL default '0',
+  `cfg_name` varchar(100) NOT NULL default '',
+  `cfg_value` varchar(255) NOT NULL default '',
+  UNIQUE `idx_user_var_name` (`user_id`,`cfg_name`)
+)  DEFAULT CHARSET=utf8;
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_modules`
+#
+
+CREATE TABLE `<%= db_prefix %>_modules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL DEFAULT '',
+  `note` varchar(255) NOT NULL default '',
+  `content` text NOT NULL,
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `position` varchar(50) DEFAULT NULL,
+  `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publish_up` datetime NOT NULL default '0000-00-00 00:00:00',
+  `publish_down` datetime NOT NULL default '0000-00-00 00:00:00',
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `module` varchar(50) DEFAULT NULL,
+  `access` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `showtitle` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `params` TEXT NOT NULL,
+  `client_id` tinyint(4) NOT NULL DEFAULT '0',
+  `language` char(7) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `published` (`published`,`access`),
+  KEY `newsfeeds` (`module`,`published`),
+  KEY `idx_language` (`language`)
+)  DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_modules_menu`
+#
+
+CREATE TABLE `<%= db_prefix %>_modules_menu` (
+  `moduleid` integer NOT NULL default '0',
+  `menuid` integer NOT NULL default '0',
+  PRIMARY KEY  (`moduleid`,`menuid`)
+)  DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_newsfeeds`
+#
+
+CREATE TABLE `<%= db_prefix %>_newsfeeds` (
+  `catid` integer NOT NULL default '0',
+  `id` integer(10) UNSIGNED NOT NULL auto_increment,
+  `name`  varchar(100) NOT NULL DEFAULT '',
+  `alias` varchar(100) NOT NULL default '',
+  `link` varchar(200) NOT NULL DEFAULT '',
+  `filename` varchar(200) default NULL,
+  `published` tinyint(1) NOT NULL default '0',
+  `numarticles` integer unsigned NOT NULL default '1',
+  `cache_time` integer unsigned NOT NULL default '3600',
+  `checked_out` integer(10) unsigned NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `ordering` integer NOT NULL default '0',
+  `rtl` tinyint(4) NOT NULL default '0',
+  `access` tinyint UNSIGNED NOT NULL DEFAULT '0',
+  `language` char(7) NOT NULL DEFAULT '',
+  `params` text NOT NULL,
+  `created` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created_by` int(10) unsigned NOT NULL default '0',
+  `created_by_alias` varchar(255) NOT NULL default '',
+  `modified` datetime NOT NULL default '0000-00-00 00:00:00',
+  `modified_by` int(10) unsigned NOT NULL default '0',
+  `metakey` text NOT NULL,
+  `metadesc` text NOT NULL,
+  `metadata` text NOT NULL,
+  `xreference` varchar(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `publish_up` datetime NOT NULL default '0000-00-00 00:00:00',
+  `publish_down` datetime NOT NULL default '0000-00-00 00:00:00',
+
+  PRIMARY KEY  (`id`),
+  KEY `idx_access` (`access`),
+  KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`published`),
+  KEY `idx_catid` (`catid`),
+  KEY `idx_createdby` (`created_by`),
+  KEY `idx_language` (`language`),
+  KEY `idx_xreference` (`xreference`)
+
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_redirect_links`
+#
+
+CREATE TABLE `<%= db_prefix %>_redirect_links` (
+  `id` integer unsigned NOT NULL auto_increment,
+  `old_url` varchar(150) NOT NULL,
+  `new_url` varchar(150) NOT NULL,
+  `referer` varchar(150) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `published` tinyint(4) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `idx_link_old` (`old_url`),
+  KEY `idx_link_modifed` (`modified_date`)
+)  DEFAULT CHARSET=utf8;
+
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_schemas`
+#
+
+CREATE TABLE `<%= db_prefix %>_schemas` (
+  `extension_id` int(11) NOT NULL,
+  `version_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`extension_id`, `version_id`)
+)  DEFAULT CHARSET=utf8;
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_session`
+#
+
+CREATE TABLE `<%= db_prefix %>_session` (
+  `session_id` varchar(32) NOT NULL default '',
+  `client_id` tinyint(3) unsigned NOT NULL default '0',
+  `guest` tinyint(4) unsigned default '1',
+  `time` varchar(14) default '',
+  `data` varchar(20480) default NULL,
+  `userid` int(11) default '0',
+  `username` varchar(150) default '',
+  `usertype` varchar(50) default '',
+  PRIMARY KEY  (`session_id`),
+  KEY `whosonline` (`guest`,`usertype`),
+  KEY `userid` (`userid`),
+  KEY `time` (`time`)
+)  DEFAULT CHARSET=utf8;
+
+
+# -------------------------------------------------------
+
+# Update Sites
+CREATE TABLE  `<%= db_prefix %>_updates` (
+  `update_id` int(11) NOT NULL auto_increment,
+  `update_site_id` int(11) default '0',
+  `extension_id` int(11) default '0',
+  `categoryid` int(11) default '0',
+  `name` varchar(100) default '',
+  `description` text NOT NULL,
+  `element` varchar(100) default '',
+  `type` varchar(20) default '',
+  `folder` varchar(20) default '',
+  `client_id` tinyint(3) default '0',
+  `version` varchar(10) default '',
+  `data` text NOT NULL,
+  `detailsurl` text NOT NULL,
+  PRIMARY KEY  (`update_id`)
+)  DEFAULT CHARSET=utf8 COMMENT='Available Updates';
+
+CREATE TABLE  `<%= db_prefix %>_update_sites` (
+  `update_site_id` int(11) NOT NULL auto_increment,
+  `name` varchar(100) default '',
+  `type` varchar(20) default '',
+  `location` text NOT NULL,
+  `enabled` int(11) default '0',
+  PRIMARY KEY  (`update_site_id`)
+)  DEFAULT CHARSET=utf8 COMMENT='Update Sites';
+
+CREATE TABLE `<%= db_prefix %>_update_sites_extensions` (
+  `update_site_id` INT DEFAULT 0,
+  `extension_id` INT DEFAULT 0,
+  PRIMARY KEY(`update_site_id`, `extension_id`)
+) ENGINE = MYISAM CHARACTER SET utf8 COMMENT = 'Links extensions to update sites';
+
+
+CREATE TABLE  `<%= db_prefix %>_update_categories` (
+  `categoryid` int(11) NOT NULL auto_increment,
+  `name` varchar(20) default '',
+  `description` text NOT NULL,
+  `parent` int(11) default '0',
+  `updatesite` int(11) default '0',
+  PRIMARY KEY  (`categoryid`)
+)  DEFAULT CHARSET=utf8 COMMENT='Update Categories';
+
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_template_styles`
+#
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_template_styles` (
+  `id` integer unsigned NOT NULL AUTO_INCREMENT,
+  `template` varchar(50) NOT NULL DEFAULT '',
+  `client_id` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `home` char(7) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `params` TEXT NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `idx_template` (`template`),
+  KEY `idx_home` (`home`)
+)  DEFAULT CHARSET=utf8 ;
+
+#
+# Table structure for table `<%= db_prefix %>_user_usergroup_map`
+#
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_user_usergroup_map` (
+  `user_id` integer unsigned NOT NULL default '0' COMMENT 'Foreign Key to <%= db_prefix %>_users.id',
+  `group_id` integer unsigned NOT NULL default '0' COMMENT 'Foreign Key to <%= db_prefix %>_usergroups.id',
+  PRIMARY KEY  (`user_id`,`group_id`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_usergroups`
+#
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_usergroups` (
+  `id` integer unsigned NOT NULL auto_increment COMMENT 'Primary Key',
+  `parent_id` integer unsigned NOT NULL default '0' COMMENT 'Adjacency List Reference Id',
+  `lft` integer NOT NULL default '0' COMMENT 'Nested set lft.',
+  `rgt` integer NOT NULL default '0' COMMENT 'Nested set rgt.',
+  `title` varchar(100) NOT NULL default '',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `idx_usergroup_parent_title_lookup` (`parent_id`,`title`),
+  KEY `idx_usergroup_title_lookup` (`title`),
+  KEY `idx_usergroup_adjacency_lookup` (`parent_id`),
+  KEY `idx_usergroup_nested_set_lookup` USING BTREE (`lft`,`rgt`)
+)  DEFAULT CHARSET=utf8;
+
+#
+# Table structure for table `<%= db_prefix %>_users`
+#
+
+CREATE TABLE `<%= db_prefix %>_users` (
+  `id` integer NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL default '',
+  `username` varchar(150) NOT NULL default '',
+  `email` varchar(100) NOT NULL default '',
+  `password` varchar(100) NOT NULL default '',
+  `usertype` varchar(25) NOT NULL default '',
+  `block` tinyint(4) NOT NULL default '0',
+  `sendEmail` tinyint(4) default '0',
+  `registerDate` datetime NOT NULL default '0000-00-00 00:00:00',
+  `lastvisitDate` datetime NOT NULL default '0000-00-00 00:00:00',
+  `activation` varchar(100) NOT NULL default '',
+  `params` text NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `usertype` (`usertype`),
+  KEY `idx_name` (`name`),
+  KEY `idx_block` (`block`),
+  KEY `username` (`username`),
+  KEY `email` (`email`)
+)  DEFAULT CHARSET=utf8;
+
+# -------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_user_profiles` (
+  `user_id` int(11) NOT NULL,
+  `profile_key` varchar(100) NOT NULL,
+  `profile_value` varchar(255) NOT NULL,
+  `ordering` int(11) NOT NULL default '0',
+  UNIQUE KEY `idx_user_id_profile_key` (`user_id`,`profile_key`)
+)  DEFAULT CHARSET=utf8 COMMENT='Simple user profile storage table';
+
+#
+# Table structure for table `<%= db_prefix %>_weblinks`
+#
+
+CREATE TABLE `<%= db_prefix %>_weblinks` (
+  `id` integer unsigned NOT NULL auto_increment,
+  `catid` integer NOT NULL default '0',
+  `sid` integer NOT NULL default '0',
+  `title` varchar(250) NOT NULL default '',
+  `alias` varchar(255) NOT NULL default '',
+  `url` varchar(250) NOT NULL default '',
+  `description` TEXT NOT NULL,
+  `date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `hits` integer NOT NULL default '0',
+  `state` tinyint(1) NOT NULL default '0',
+  `checked_out` integer NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `ordering` integer NOT NULL default '0',
+  `archived` tinyint(1) NOT NULL default '0',
+  `approved` tinyint(1) NOT NULL default '1',
+  `access` integer NOT NULL default '1',
+  `params` text NOT NULL,
+  `language` char(7) NOT NULL DEFAULT '',
+  `created` datetime NOT NULL default '0000-00-00 00:00:00',
+  `created_by` int(10) unsigned NOT NULL default '0',
+  `created_by_alias` varchar(255) NOT NULL default '',
+  `modified` datetime NOT NULL default '0000-00-00 00:00:00',
+  `modified_by` int(10) unsigned NOT NULL default '0',
+  `metakey` text NOT NULL,
+  `metadesc` text NOT NULL,
+  `metadata` text NOT NULL,
+  `featured` tinyint(3) unsigned NOT NULL default '0' COMMENT 'Set if link is featured.',
+  `xreference` varchar(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `publish_up` datetime NOT NULL default '0000-00-00 00:00:00',
+  `publish_down` datetime NOT NULL default '0000-00-00 00:00:00',
+
+  PRIMARY KEY  (`id`),
+  KEY `idx_access` (`access`),
+  KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
+  KEY `idx_catid` (`catid`),
+  KEY `idx_createdby` (`created_by`),
+  KEY `idx_featured_catid` (`featured`,`catid`),
+  KEY `idx_language` (`language`),
+  KEY `idx_xreference` (`xreference`)
+)  DEFAULT CHARSET=utf8;
+# -------------------------------------------------------
+
+#
+# Table structure for table `<%= db_prefix %>_viewlevels`
+#
+
+CREATE TABLE IF NOT EXISTS `<%= db_prefix %>_viewlevels` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `title` varchar(100) NOT NULL DEFAULT '',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `rules` varchar(5120) NOT NULL COMMENT 'JSON encoded access control.',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_assetgroup_title_lookup` (`title`)
+)   DEFAULT CHARSET=utf8;
