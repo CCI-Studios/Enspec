@@ -65,8 +65,8 @@ namespace :deploy do
         INSERT INTO #{db_prefix}_users VALUES (42, 'Administrator', 'admin', 'dummy@example.com', concat(md5(concat('#{admin_pass}', '1234')), ':1234'), 'depreciated', 0, 1, '0000-00-00', '0000-00-00', '', '');
         INSERT INTO #{db_prefix}_user_usergroup_map VALUES(42, 8);
       sql
-      put "#{structure}#{data}#{t}", "#{deploy_to}/shared/joomla.sql"
-      run "mysql -u#{db_user} -p#{db_pass} -hlocalhost #{db_name} < #{deploy_to}/shared/joomla.sql"
+      put "#{structure}#{data}#{t}\n", "#{deploy_to}/shared/joomla.sql"
+      run "mysql -u#{db_user} -p\"#{db_pass}\" -hlocalhost #{db_name} < #{deploy_to}/shared/joomla.sql"
     end
 
     task :symlink do
@@ -122,6 +122,7 @@ namespace :deploy do
       run "mkdir -p #{deploy_to}/releases"
       run "mkdir -p #{deploy_to}/shared"
       run "mkdir -p #{public}"
+      run "chmod 755 #{public}"
 
       run <<-CMD
         cd #{deploy_to}/shared &&
