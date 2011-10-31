@@ -4,7 +4,7 @@
 	<name>NAME</name>
 	<creationDate>DATE</creationDate>
 	<author>AUTHOR_NAME</author>
-	<authorEmail>jbennett@ccistudios.com</authorEmail>
+	<authorEmail>EMAIL@ccistudios.com</authorEmail>
 	<authorUrl>http://ccistudios.com</authorUrl>
 	<copyright>Copyright (C) 2011 COMPANY.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
@@ -29,6 +29,8 @@
 	<positions>
 		<position>header</position>
 		<position>sidebar</position>
+		<position>bottom</position>
+		<position>footer</position>
 	</positions>
 
 	<config>
