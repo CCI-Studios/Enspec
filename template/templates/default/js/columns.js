@@ -10,6 +10,9 @@ CCI.Columns = new Class({
 	offset: null,
 
 	initialize: function(container, selector) {
+		if (!container)
+			return;
+		
 		this.container = container;
 		this.selector = selector;
 		this.columns = this.container.getElements(this.selector);
