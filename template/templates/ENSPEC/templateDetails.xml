@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="1.7" type="template" client="site">
-	<name>NAME</name>
-	<creationDate>DATE</creationDate>
-	<author>AUTHOR_NAME</author>
-	<authorEmail>EMAIL@ccistudios.com</authorEmail>
+	<name>ENSPEC</name>
+	<creationDate>November 14, 2011</creationDate>
+	<author>Matt Elliott</author>
+	<authorEmail>melliott@ccistudios.com</authorEmail>
 	<authorUrl>http://ccistudios.com</authorUrl>
-	<copyright>Copyright (C) 2011 COMPANY.</copyright>
+	<copyright>Copyright (C) 2011 ENSPEC.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<version>1.7.0</version>
 	<description>DESCRIPTION</description>

@@ -53,25 +53,38 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 </head>
 
 <body class="<?= $menu ?>">
-
-	<div id="wrapper">
-		<header>
-			<jdoc:include type="modules" name ="header" style="xhtml" />
-		</header>
-
-		<div id="main">
-			<aside>
-				<jdoc:include type="modules" name="left" style="xhtml" />
-			</aside>
-
-			<article>
-				<jdoc:include type="component" />
-			</article>
+	
+	
+	<div id="header">
+		<div>
+			<jdoc:include type="modules" name="header" style="xhtml" />
 		</div>
-
-		<footer>
+	</div>
+		
+	<div class="container">
+		<div id="masthead">
+			<jdoc:include type="modules" name="masthead" style="xhtml" />
+		</div>
+		
+		<div id="body">
+			<div id="content">
+				<jdoc:include type="component" />
+			</div>
+			<div id="sidebar">
+				<jdoc:include type="modules" name="sidebar" style="xhtml" />
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div id="footer">
 			<jdoc:include type="modules" name="footer" style="xhtml" />
-		</footer>
+		</div>
+		
+		<div id="copyright">
+			<span class="left">&copy; <?php echo date('Y') ?> ENSPEC. All Rights Reserved.</span>
+			<span class="right"><a href="http://ccistudios.com">Site by CCI Studios</a></span>
+		</div>
+		
 	</div>
 
 	<div class="hidden">
