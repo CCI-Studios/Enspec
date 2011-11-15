@@ -14,3 +14,36 @@
 	background: url('../images/header_bg.png') top center no-repeat;
 	height:133px; /*TODO REMOVE*/
 }
+
+#masthead {
+	background: #000000 url('../images/masthead_divider.png') bottom center no-repeat;
+	height: 290px; /*TODO REMOVE*/
+	padding: 30px 30px 42px;
+}
+
+#top {
+	float:left;
+	width:660px;
+	padding: 25px 30px 25px 0;
+}
+
+#comp {
+	float:left;
+	padding: 25px 30px 25px 0;
+	width: 660px;
+}
+
+#bottom {
+	float:left;
+	width:660px;
+	border-top: 1px solid #343434;
+	padding: 30px 30px 25px 0px;
+}
+
+#sidebar {
+	width:200px;
+	float: left;
+	margin-top: -26px; /*TODO ASK JON IF THIS IS OKAY*/
+	padding:0px 0px 0px 30px;
+	border-left: 1px solid #343434;
+}

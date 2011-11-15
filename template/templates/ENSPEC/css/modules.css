@@ -1,15 +1,52 @@
 /* @group modules */
 .moduletable {}
 
-/* @group hmenu */
+/* menus */
 .moduletable_hmenu {}
 
-.moduletable_hmenu > ul {
+.moduletable_hmenu.primary {
+	float: right;
+	clear: both;
+	text-transform: uppercase;
+	margin-top: 70px;
+}
+
+.moduletable_hmenu.primary > ul {
 	margin: 0;
 	padding: 0;
 }
 
-.moduletable_hmenu > ul > li {
+.moduletable_hmenu.primary > ul > li {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	position: relative;
+	
+	padding: 0 15px;
+}
+
+.moduletable_hmenu.primary > ul > li > a {
+	color: #ffffff;
+}
+
+.moduletable_hmenu.primary > ul > li > a:hover {
+	color: #f45353;
+}
+
+.moduletable_hmenu.secondary {
+	float: right;
+	font-size: 10px;
+	margin: 18px 0px 0px;
+	color: #cc33cc;
+	text-transform: uppercase;
+}
+
+.moduletable_hmenu.secondary > ul {
+	margin: 0;
+	padding: 0;
+}
+
+.moduletable_hmenu.secondary > ul > li {
 	display: inline-block;
 	*display: inline;
 	*zoom: 1;
@@ -18,41 +55,90 @@
 	padding: 0 5px;
 }
 
-.moduletable_vmenu > ul > li > a,
-.moduletable_vmenu > ul > li > span {
-	display: block;
+.moduletable_hmenu.secondary > ul > li > a {
+	color: #cc33cc
 }
 
-.moduletable_vmenu > ul > li > a span,
-.moduletable_vmenu > ul > li > span span {
-	
+.moduletable_hmenu.secondary > ul > li > a:hover {
+	text-decoration: underline;
 }
 
-.moduletable_vmenu ul ul {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 100%;
+a
+.moduletable_hmenu.footer {
+	text-align: center;
+	font-size: 10px;
+	margin: 18px 0px 0px;
+	color: #cc33cc;
+	text-transform: uppercase;
 }
-/* /hmenu */
 
-
-/* @group vmenu */
-.moduletable_vmenu {}
-
-.moduletable_vmenu > ul {
+.moduletable_hmenu.footer > ul {
 	margin: 0;
 	padding: 0;
-	list-style: none;
 }
 
-.moduletable_vmenu ul ul {
-	margin: 0.5em 0 1em 1em;
-	list-style: none;
-}
-
-.moduletable_vmenu li {
+.moduletable_hmenu.footer > ul > li {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	position: relative;
 	
+	padding: 0 5px;
 }
-/* /vmenu */
+
+.moduletable_hmenu.footer > ul > li > a {
+	color: #cc33cc
+}
+
+.moduletable_hmenu.footer > ul > li > a:hover {
+	text-decoration: underline;
+}
+
+/*logo*/
+
+.logo {
+	float:left;
+}
+
+/*top*/
+
+.moduletable.biggerImage {
+	float:left;
+	position:relative;
+	padding-left: 311px;
+	width: 369px;
+}
+
+.moduletable.biggerImage img {
+	float: left;
+	margin: -27px 0 0 -341px;
+	width: 311px; /*TODO #TOP IMAGES MUST BE 311px WIDE*/
+}
+
+/*bottom*/
+
+.moduletable.bigImage {
+	float:left;
+	position:relative;
+	padding-left: 151px;
+	margin-left: 40px;
+	width: 149px;
+}
+
+.moduletable.bigImage:first-child {
+	margin-left: 0;
+}
+
+.moduletable.bigImage h3,
+.moduletable.bigImage p {
+	margin-left:10px;
+}
+
+.moduletable.bigImage img {
+	float: left;
+	width: 151px;
+	margin: -30px 0 0 -161px;
+}
+
+
 

@@ -1,13 +1,27 @@
 /* elements */
 body, select, input, textarea {
-	color: #444; /* off black */
-	font-family: Helvetica, Arial, sans-serif;
+	color: #ffffff; /* off black */
+	font-family: Arial, sans-serif;
 	background: #DDD url('../images/bg_repeat.jpg') top center repeat-x;
+	font-size: 12px;
 	
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2, h3, h4, h5, h6 { 
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-top: 0px;
+}
+
+h1 {
+	color: #cc3333;
+	font-size: 14px;
+}
+
+h2 { font-size: 12px; }
+
+h3 { color: #cc3333; }
 
 a, a:active, a:visited {
 	color: #607890;
@@ -15,5 +29,5 @@ a, a:active, a:visited {
 }
 a:hover {
 	color: #036;
-	text-decoration: underline;
+	text-decoration: none;
 }

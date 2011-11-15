@@ -33,5 +33,4 @@ CCI.Columns = new Class({
 });
 
 window.addEvent('load', function () {
-	c = new CCI.Columns($('bottom'), '.moduletable');
 });

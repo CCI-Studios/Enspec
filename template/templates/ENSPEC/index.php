@@ -7,10 +7,14 @@
 <?php
 // get current menu name
 $menu = JSite::getMenu();
-if ($menu && $menu->getActive())
-    $menu = $menu->getActive()->alias;
-else
+if ($menu && $menu->getActive()) {
+		$menu = $menu->getActive();
+		$page_sfx = $menu->params->get('pageclass_sfx');
+    $menu = $menu->alias;
+} else {
 	$menu = "";
+	$page_sfx = "";
+}
 
 if ($_SERVER['SERVER_PORT'] === 8888 ||
 		$_SERVER['SERVER_ADDR'] === '127.0.0.1' ||
@@ -56,34 +60,47 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 	
 	
 	<div id="header">
-		<div>
-			<jdoc:include type="modules" name="header" style="xhtml" />
+		<div class="container">
+				<jdoc:include type="modules" name="header" style="xhtml" />
 		</div>
 	</div>
+	
+	<div class="clear"></div>
 		
 	<div class="container">
 		<div id="masthead">
 			<jdoc:include type="modules" name="masthead" style="xhtml" />
 		</div>
-		
+
 		<div id="body">
 			<div id="content">
-				<jdoc:include type="component" />
+				<div id="top"><div>
+					<jdoc:include type="modules" name="top" style="xhtml" />
+				</div></div>
+				<?php if ($page_sfx !== '_hidden'): ?>
+				<div id="comp">
+					<jdoc:include type="component" />
+				</div>
+				<?php endif; ?>
+				<div id="bottom">
+					<jdoc:include type="modules" name="bottom" style="xhtml" />
+				</div>
 			</div>
 			<div id="sidebar">
 				<jdoc:include type="modules" name="sidebar" style="xhtml" />
-				<div class="clear"></div>
 			</div>
 		</div>
+		
+		<div class="clear"></div>
 		
 		<div id="footer">
 			<jdoc:include type="modules" name="footer" style="xhtml" />
 		</div>
 		
-		<div id="copyright">
+		<!-- <div id="copyright">
 			<span class="left">&copy; <?php echo date('Y') ?> ENSPEC. All Rights Reserved.</span>
 			<span class="right"><a href="http://ccistudios.com">Site by CCI Studios</a></span>
-		</div>
+		</div> -->
 		
 	</div>
 
