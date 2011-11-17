@@ -1,9 +1,14 @@
 /* layout */
 
+.headerContainer,
 .container {
 	margin: 0 auto;
 	width: 940px;
 	padding: 0 10px;
+}
+
+.container > div {
+	background: #000000;
 }
 
 #header {
