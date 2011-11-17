@@ -23,3 +23,10 @@
 	color: #cc3333;
 	text-transform: uppercase;
 }
+
+.paddingRight { padding-right: 10px; }
+
+.welcomeHeader {
+	color: #970291;
+	font-size: 20px;
+}
