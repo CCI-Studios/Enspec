@@ -143,6 +143,11 @@
 
 /*sidebar*/
 
+/*connect with us*/
+
+.moduletable .connect img { padding-left: 12px; }
+.moduletable .connect img:first-child { padding-left: 0px; }
+
 /*testimonials*/
 
 .moduletable .testimonials {
