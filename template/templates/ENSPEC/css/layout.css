@@ -21,29 +21,41 @@
 	padding: 30px 30px 42px;
 }
 
-#top {
+#content {
 	float:left;
 	width:660px;
+}
+
+#top {
+	float:left;
 	padding: 25px 30px 25px 0;
 }
 
 #comp {
 	float:left;
 	padding: 25px 30px 25px 0;
-	width: 660px;
 }
 
 #bottom {
 	float:left;
-	width:660px;
 	border-top: 1px solid #343434;
-	padding: 30px 30px 25px 0px;
+	padding: 0px 0px 25px 0px;
 }
 
 #sidebar {
-	width:200px;
+	width:219px;
 	float: left;
-	margin-top: -26px; /*TODO ASK JON IF THIS IS OKAY*/
 	padding:0px 0px 0px 30px;
+	margin-top: 25px;
 	border-left: 1px solid #343434;
+}
+
+#footer {
+	padding: 0 0 27px 0;
+	background: #000000 url('../images/masthead_divider.png') bottom center no-repeat;
+}
+
+#copyright {
+	font-size: 10px;
+	padding: 20px 0;
 }
