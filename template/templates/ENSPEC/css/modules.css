@@ -39,6 +39,7 @@
 	margin: 18px 0px 0px;
 	color: #cc33cc;
 	text-transform: uppercase;
+	line-height: 10px;
 }
 
 .moduletable_hmenu.secondary > ul {
@@ -53,6 +54,12 @@
 	position: relative;
 	
 	padding: 0 5px;
+	border-left: 1px solid #cc33cc;
+}
+
+.moduletable_hmenu.secondary > ul > li:first-child {
+	border-left: none;
+	padding-right: 7px;
 }
 
 .moduletable_hmenu.secondary > ul > li > a {
@@ -63,13 +70,12 @@
 	text-decoration: underline;
 }
 
-a
 .moduletable_hmenu.footer {
 	text-align: center;
 	font-size: 10px;
 	margin: 18px 0px 0px;
 	color: #cc33cc;
-	text-transform: uppercase;
+	line-height: 10px;
 }
 
 .moduletable_hmenu.footer > ul {
@@ -82,8 +88,12 @@ a
 	*display: inline;
 	*zoom: 1;
 	position: relative;
-	
-	padding: 0 5px;
+	border-left: 1px solid #cc33cc;
+	padding: 0 10px;
+}
+
+.moduletable_hmenu.footer > ul > li:first-child {
+	border-left:none;
 }
 
 .moduletable_hmenu.footer > ul > li > a {
@@ -91,7 +101,7 @@ a
 }
 
 .moduletable_hmenu.footer > ul > li > a:hover {
-	text-decoration: underline;
+	color: #f45353;
 }
 
 /*logo*/
@@ -105,8 +115,7 @@ a
 .moduletable.biggerImage {
 	float:left;
 	position:relative;
-	padding-left: 311px;
-	width: 369px;
+	padding-left: 341px;
 }
 
 .moduletable.biggerImage img {
@@ -120,24 +129,25 @@ a
 .moduletable.bigImage {
 	float:left;
 	position:relative;
-	padding-left: 151px;
-	margin-left: 40px;
-	width: 149px;
-}
-
-.moduletable.bigImage:first-child {
-	margin-left: 0;
-}
-
-.moduletable.bigImage h3,
-.moduletable.bigImage p {
-	margin-left:10px;
+	padding-left: 163px;
+	margin: 30px 40px 0 0;
+	width: 127px;
 }
 
 .moduletable.bigImage img {
 	float: left;
 	width: 151px;
-	margin: -30px 0 0 -161px;
+	margin: -30px 0 0 -163px;
+	border: 1px solid #333333;
+}
+
+/*sidebar*/
+
+/*testimonials*/
+
+.moduletable .testimonials {
+	font-style: italic;
+	line-height: 24px;
 }
 
 
