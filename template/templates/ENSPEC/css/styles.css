@@ -12,3 +12,14 @@
 ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
 ::selection { background:#FF5E99; color:#fff; text-shadow: none; }
 
+/*copyright*/
+
+.purpleFont {
+	color: #cc33cc;
+	text-transform: uppercase;
+}
+
+.orangeFont {
+	color: #cc3333;
+	text-transform: uppercase;
+}
