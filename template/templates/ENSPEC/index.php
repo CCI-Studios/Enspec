@@ -68,38 +68,53 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 	<div class="clear"></div>
 		
 	<div class="container">
-		<div id="masthead">
-			<jdoc:include type="modules" name="masthead" style="xhtml" />
-		</div>
+		<div>
+			<?php if ($this->countModules('masthead')): ?>
+				<div id="masthead">
+					<jdoc:include type="modules" name="masthead" style="xhtml" />
+				</div>
+			<?php endif; ?>
 
-		<div id="body">
-			<div id="content">
-				<div id="top"><div>
-					<jdoc:include type="modules" name="top" style="xhtml" />
-				</div></div>
-				<?php if ($page_sfx !== '_hidden'): ?>
-				<div id="comp">
-					<jdoc:include type="component" />
-				</div>
-				<?php endif; ?>
-				<div id="bottom">
-					<jdoc:include type="modules" name="bottom" style="xhtml" />
-				</div>
-			</div>
-			<div id="sidebar">
-				<jdoc:include type="modules" name="sidebar" style="xhtml" />
-			</div>
-		</div>
-		
-		<div class="clear"></div>
-		
-		<div id="footer">
-			<jdoc:include type="modules" name="footer" style="xhtml" />
-		</div>
+			<div id="body">
+				<div id="content">
 				
-		<div id="copyright">
-			<span class="left">&copy; <?php echo date('Y') ?> <span class="purpleFont">EN</span><span class="orangeFont">SPEC</span> Inc. All Rights Reserved.</span>
-			<span class="right"><a href="http://ccistudios.com">Site by CCI Studios</a></span>
+					<?php if ($this->countModules('top')): ?>
+					<div id="top"><div>
+						<jdoc:include type="modules" name="top" style="xhtml" />
+						<div class="clear"></div>
+					</div></div>
+					<?php endif; ?>
+				
+					<?php if ($page_sfx !== '_hidden'): ?>
+					<div id="comp">
+						<jdoc:include type="component" />
+						<div class="clear"></div>
+					</div>
+					<?php endif; ?>
+				
+					<?php if ($this->countModules('bottom')): ?>
+					<div id="bottom">
+						<jdoc:include type="modules" name="bottom" style="xhtml" />
+						<div class="clear"></div>
+					</div>
+					<?php endif; ?>
+				
+				</div>
+				<div id="sidebar">
+					<jdoc:include type="modules" name="sidebar" style="xhtml" />
+				</div>
+			</div>
+		
+			<div class="clear"></div>
+		
+			<div id="footer">
+				<jdoc:include type="modules" name="footer" style="xhtml" />
+			</div>
+				
+			<div id="copyright">
+				<span class="left">&copy; <?php echo date('Y') ?> <span class="purpleFont">EN</span><span class="orangeFont">SPEC</span> Inc. All Rights Reserved.</span>
+				<span class="right"><a href="http://ccistudios.com">Site by CCI Studios</a></span>
+			</div>
 		</div>
 	</div>
 
