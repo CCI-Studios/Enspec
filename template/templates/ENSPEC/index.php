@@ -60,17 +60,15 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 	
 	
 	<div id="header">
-		<div>
-			<div class="headerContainer">
-					<jdoc:include type="modules" name="header" style="xhtml" />
-			</div>
-		</div>
+		<div><div class="headerContainer">
+				<jdoc:include type="modules" name="header" style="xhtml" />
+		</div></div>
 	</div>
 	
 	<div class="clear"></div>
 		
-	<div class="container">
-		<div>
+	<div class="container"><div>
+		
 			<?php if ($this->countModules('masthead')): ?>
 				<div id="masthead">
 					<jdoc:include type="modules" name="masthead" style="xhtml" />
@@ -101,10 +99,12 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 					</div>
 					<?php endif; ?>
 				
-				</div>
-				<div id="sidebar">
-					<jdoc:include type="modules" name="sidebar" style="xhtml" />
-				</div>
+				</div><!-- closes content -->
+				
+					<div id="sidebar">
+						<jdoc:include type="modules" name="sidebar" style="xhtml" />
+					</div>
+				
 			</div>
 		
 			<div class="clear"></div>
@@ -117,8 +117,8 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 				<span class="left">&copy; <?php echo date('Y') ?> <span class="purpleFont">EN</span><span class="orangeFont">SPEC</span> Inc. All Rights Reserved.</span>
 				<span class="right">Site by <a href="http://ccistudios.com">CCI Studios</a></span>
 			</div>
-		</div>
-	</div>
+	
+	</div></div>
 
 	<div class="hidden">
 		<jdoc:include type="modules" name="hidden" style="raw" />
