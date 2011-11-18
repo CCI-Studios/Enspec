@@ -143,6 +143,9 @@
 
 /*sidebar*/
 
+#sidebar .moduletable {margin-top: 30px;}
+#sidebar .moduletable:first-child { margin-top: 0px;} /*ASK JON IF THIS IS OKAY*/
+
 /*connect with us*/
 
 .moduletable .connect img { padding-left: 12px; }
