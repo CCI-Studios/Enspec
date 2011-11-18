@@ -25,10 +25,10 @@ h2 { font-size: 12px; }
 h3 { color: #cc3333; }
 
 a, a:active, a:visited {
-	color: #607890;
+	color: #ffffff;
 	text-decoration: none;
 }
 a:hover {
-	color: #036;
+	color: #cc3333;
 	text-decoration: none;
 }
