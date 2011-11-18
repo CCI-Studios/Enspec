@@ -34,3 +34,13 @@
         color: transparent;
         text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
+
+.rolloverLink {
+	text-transform: uppercase;
+	color: #cc3333;
+	padding: 10px 15px 0px 0px;
+	line-height: 25px;
+}
+.rolloverLink:hover { 
+	background: url('../images/rollover.png') 105% 100% no-repeat; 
+}
