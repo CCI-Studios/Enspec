@@ -19,7 +19,6 @@
 .paddingRight { padding: 0px 20px 20px 0; }
 
 .insetText {
-        font-family: Lucida Grande;
         -webkit-background-clip: text;
 		-moz-background-clip: text;
 		background-clip: text;
