@@ -22,15 +22,17 @@
 	*zoom: 1;
 	position: relative;
 	
-	padding: 0 15px;
 }
 
 .moduletable_hmenu.primary > ul > li > a {
-	color: #ffffff;
+	padding: 10px 15px 0px;
+	line-height: 25px;
 }
 
 .moduletable_hmenu.primary > ul > li > a:hover {
 	color: #f45353;
+	background: url('../images/rollover.png') 105% 100% no-repeat;
+	
 }
 
 .moduletable_hmenu.secondary {
