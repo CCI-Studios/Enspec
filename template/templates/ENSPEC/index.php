@@ -113,7 +113,7 @@ $analytics = "UA-XXXXX-X"; // FIXME Update to client ID
 				
 			<div id="copyright">
 				<span class="left">&copy; <?php echo date('Y') ?> <span class="purpleFont">EN</span><span class="orangeFont">SPEC</span> Inc. All Rights Reserved.</span>
-				<span class="right"><a href="http://ccistudios.com">Site by CCI Studios</a></span>
+				<span class="right">Site by <a href="http://ccistudios.com">CCI Studios</a></span>
 			</div>
 		</div>
 	</div>
