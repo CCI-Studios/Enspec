@@ -12,7 +12,7 @@
 }
 
 #header {
-	background: url('../images/.png') top center repeat-x;
+	background: url('../images/header_bgOuter.png') top center repeat-x;
 }
 
 #header > div {
