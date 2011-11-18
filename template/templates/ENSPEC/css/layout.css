@@ -9,6 +9,7 @@
 
 .container > div {
 	background: #000000;
+	background: url('../images/body_bgRepeat.png') top center repeat-y;
 }
 
 #header {
