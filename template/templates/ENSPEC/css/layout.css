@@ -8,7 +8,6 @@
 }
 
 .container > div {
-	background: #000000;
 	background: url('../images/body_bgRepeat.png') top center repeat-y;
 }
 
@@ -22,7 +21,7 @@
 }
 
 #masthead {
-	background: #000000 url('../images/masthead_divider.png') bottom center no-repeat;
+	background: url('../images/masthead_divider.png') bottom center no-repeat;
 	height: 290px; /*TODO REMOVE*/
 	padding: 30px 30px 42px;
 }
@@ -55,7 +54,7 @@
 
 #footer {
 	padding: 0 0 27px 0;
-	background: #000000 url('../images/masthead_divider.png') bottom center no-repeat;
+	background: url('../images/masthead_divider.png') bottom center no-repeat;
 }
 
 #copyright {
