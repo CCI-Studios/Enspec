@@ -46,8 +46,8 @@
 }
 
 #sidebar {
-	width:219px;
-	float: right;
+	width:200px;
+	float: left;
 	padding:0px 0px 0px 30px;
 	margin-top: 25px;
 	border-left: 1px solid #343434;
