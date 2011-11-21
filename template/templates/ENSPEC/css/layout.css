@@ -7,13 +7,9 @@
 	padding: 0 10px;
 }
 
-.container > div {
-	background: url('../images/body_bgRepeat.png') top center repeat-y;
-}
+.container > div { background: url('../images/body_bgRepeat.png') top center repeat-y; }
 
-#header {
-	background: url('../images/header_bgOuter.png') top center repeat-x;
-}
+#header { background: url('../images/header_bgOuter.png') top center repeat-x; }
 
 #header > div {
 	background: url('../images/header_bg.png') top center no-repeat;
@@ -32,13 +28,9 @@
 	padding-right: 30px;
 }
 
-#top {
-	padding: 25px 30px 25px 0;
-}
+#top { padding: 25px 30px 25px 0; }
 
-#comp {
-	padding: 0px 20px 0px 10px;
-}
+#comp { padding: 0px 20px 0px 10px; }
 
 #bottom {
 	border-top: 1px solid #343434;

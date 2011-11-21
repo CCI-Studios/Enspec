@@ -64,13 +64,9 @@
 	padding-right: 7px;
 }
 
-.moduletable_hmenu.secondary > ul > li > a {
-	color: #cc33cc
-}
+.moduletable_hmenu.secondary > ul > li > a { color: #cc33cc }
 
-.moduletable_hmenu.secondary > ul > li > a:hover {
-	text-decoration: underline;
-}
+.moduletable_hmenu.secondary > ul > li > a:hover { text-decoration: underline; }
 
 .moduletable_hmenu.footer {
 	text-align: center;
@@ -94,18 +90,11 @@
 	padding: 0 10px;
 }
 
-.moduletable_hmenu.footer > ul > li:first-child {
-	border-left:none;
-}
+.moduletable_hmenu.footer > ul > li:first-child { border-left:none; }
 
-.moduletable_hmenu.footer > ul > li > a {
-	color: #cc33cc;
-}
+.moduletable_hmenu.footer > ul > li > a { color: #cc33cc; }
 
-.moduletable_hmenu.footer > ul > li > a:hover {
-	color: #f45353;
-}
-
+.moduletable_hmenu.footer > ul > li > a:hover { color: #f45353; }
 
 /*top*/
 
