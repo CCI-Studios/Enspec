@@ -3,26 +3,18 @@ body, select, input, textarea {
 	color: #ffffff; /* off black */
 	font-family: Arial, sans-serif;
 	background: #DDD url('../images/bg_repeat.jpg') top center repeat-x;
-	font-size: 12px;
-	
+	font-size: 12px;	
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
 h1, h2, h3, h4, h5, h6 { 
+	color: #cc3333;
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-top: 0px;
 }
-
-h1 {
-	color: #cc3333;
-	font-size: 14px;
-	margin-top: 20px;
-}
-
-h2 { font-size: 12px; }
-
-h3 { color: #cc3333; }
+h1 { font-size: 14px; margin-top: 20px; }
+h2 { color: #ffffff; font-size: 12px; }
 
 a, a:active, a:visited {
 	color: #ffffff;
